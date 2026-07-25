@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Kit de Emergencia ❤️</title>
+    <!-- Fuentes: Nunito para botones/títulos y Dancing Script para los poemas -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold-primary: #d4af37; /* Dorado metálico elegante */
+            --gold-light: #f9e596;  /* Dorado claro para brillos */
+            --bg-dark: #040914;     /* Azul noche profundo */
+            --card-glass: rgba(11, 29, 58, 0.6); /* Cristal azulado transparente */
+            --text-light: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            /* Fondo con gradiente azul medianoche animado */
+            background: linear-gradient(-45deg, #020617, #0f172a, #1e3a8a, #0b162c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+            color: var(--text-light);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* La Tarjeta Central (Efecto Cristal Noche) */
+        .card {
+            background: var(--card-glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3); /* Borde dorado sutil */
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .header {
+            font-size: 1.2rem;
+            color: var(--gold-primary);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Visor del Mensaje */
+        .message-container {
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+
+        #message-display {
+            /* ESTILO CURSIVO Y ROMÁNTICO */
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem; /* Más grande para que la cursiva se lea bien */
+            color: var(--gold-light);
+            font-weight: 700;
+            line-height: 1.4;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        /* Animaciones para el texto */
+        .fade-out {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* El Gran Botón Dorado */
+        button {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
+            color: var(--bg-dark); /* Letra azul oscuro para contrastar con el oro */
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+            transition: transform 0.1s, box-shadow 0.2s;
+            margin-top: 10px;
+            -webkit-tap-highlight-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:active {
+            transform: scale(0.95);
+            box-shadow: 0 5px 10px rgba(212, 175, 55, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header">
+            Para El Sol Que Ilumina Mis Dias grises, Y La Estrella Que Alumbra En Mi Firmamento💖
+        </div>
+
+        <div class="message-container">
+            <!-- El texto inicial también está en cursiva y dorado -->
+            <p id="message-display">¿Tuviste un día pesado o solo me extrañas? Presiona el botón de abajo :3</p>
+        </div>
+
+        <button id="smile-btn">Quiero verte sonreír ✨</button>
+    </div>
+
+    <script>
+        // --- LOS 100 MENSAJES QUE ESCRIBISTE ---
+        const phrases = [
+            `Respira hondo, mi amor. Todo va a estar bien, y si no, aquí estoy yo para abrazarte.`,
+            `Eres mucho más fuerte de lo que crees, pero hoy se vale estar cansada. Te amo.`,
+            `No dejes que un mal día te haga dudar de lo increíble que eres.`,
+            `Si el mundo pesa mucho hoy, déjame cargarlo un ratito por ti.`,
+            `Cierra los ojos. Imagina que te estoy dando el abrazo más apretado del mundo.`,
+            `Este mensaje es un "Vale" por una tarde de películas, mimos y tu comida favorita.`,
+            `Eres la persona más linda del universo, incluso cuando estás estresada.`,
+            `Un mal día no define tu vida, ni borra tu luz. ¡Brilla, mi amor!`,
+            `Estoy muy orgulloso de ti y de todo el esfuerzo que haces todos los días.`,
+            `Pase lo que pase, recuerda que eres mi lugar favorito en el mundo.`,
+            `Si pudieras verte a través de mis ojos, entenderías por qué nada puede opacar tu belleza.`,
+            `Ojalá pudiera envolver este mensaje en un abrazo y mandártelo para que te abrigue el alma.`,
+            `Hoy puede ser un día pesado, pero mi amor por ti es más ligero y cálido que el sol de la mañana.`,
+            `Respira, mi amor. Mañana es una nueva oportunidad, y yo estaré ahí contigo.`,
+            `Me gustaría poder tomar tu mano ahora mismo y decirte que todo estará bien.`,
+            `Un "te amo" inmenso para la mujer que hace que mi mundo sea un lugar mejor.`,
+            `Déjame ser el refugio donde puedes descansar cuando la vida se ponga ruidosa.`,
+            `Aquí tienes un besito virtual en la frente. De esos que curan cualquier mal rato.`,
+            `No hay tormenta que dure cien años, ni mal día que no curemos estando juntos.`,
+            `Relaja los hombros, suelta el aire, y recuerda que te adoro.`,
+            `Estoy aquí para escucharte, abrazarte o simplemente estar en silencio a tu lado. Lo que necesites.`,
+            `Si el día te trata mal, yo te trataré como la reina que eres.`,
+            `Todo es temporal, excepto las ganas inmensas que tengo de verte sonreír.`,
+            `Que este mensaje sirva como un curita para ese corazón cansadito que tienes hoy.`,
+            `Cuando sientas que no puedes más, recuerda que siempre somos tú y yo contra el mundo.`,
+            `Si hoy fuera un pez, lo devolveríamos al agua. ¡Mañana pescamos algo mejor!`,
+            `¿Día difícil? No te preocupes, yo también odio a todos los que te estresaron hoy.`,
+            `Recuerda: eres demasiado bonita para que el estrés te gane y te saque arrugas.`,
+            `Si alguien te hizo enojar hoy, dime y le echamos una maldición (o le tiramos un globo con agua).`,
+            `Sonríe, que el estrés saca arrugas y tienes una cara muy linda que cuidar.`,
+            `Oficialmente declaro que el día de hoy ha sido cancelado. Reiniciaremos mañana.`,
+            `Eres como mi WiFi: sin ti, me desconecto del mundo. ¡Ánimo, mi router hermoso!`,
+            `Amor, si el estrés quemara calorías, hoy habrías corrido una maratón. ¡Ven a descansar!`,
+            `¡Aviso! Se requiere que dejes de pensar tanto y vengas a darme un beso.`,
+            `Si el mundo hoy fue un villano, yo soy el superhéroe que te trae de cenar.`,
+            `Tengo un plan perfecto: tú, yo, comida deliciosa y que el mundo ruede.`,
+            `¿Sabías que los abrazos reducen el estrés? Ven a cobrar tu dosis diaria obligatoria.`,
+            `El día podrá estar feo, pero tú sigues estando guapísima.`,
+            `Hagamos un trato: tú dejas de estresarte y yo te doy masajes infinitos.`,
+            `Hoy está prohibido estar triste. Por decreto oficial de tu novio.`,
+            `Si la vida te da limones, úsalos para tirárselos a quien te estresó hoy.`,
+            `Oye, niña bonita, deja el ceño fruncido que se te va a quedar así.`,
+            `Que levante la mano la novia más linda del mundo... (Pista: eres tú, levanta la mano).`,
+            `Ya pedí un deseo al universo: que mañana tu único estrés sea decidir qué postre comeremos.`,
+            `Mi amor, el estrés no combina con tu outfit de hoy.`,
+            `Estoy a un mensaje de distancia para ir a rescatarte y llevarte lejos del caos.`,
+            `Si tu día fuera un villano de película, mi amor por ti sería el superpoder que lo derrota.`,
+            `Imagina un perrito bebé tropezando... listo, espero que eso te haya hecho sonreír.`,
+            `Eres demasiado espectacular para que un martes cualquiera te arruine el ánimo.`,
+            `Alguien me dijo que la cura para el estrés es ver una peli conmigo. ¿Lo comprobamos?`,
+            `Si el día se pone gris y te falta la emoción, aquí tienes mis abrazos y todo mi corazón.`,
+            `Un día malo es fugaz, como la espuma del mar, pero el amor que te tengo, nunca se va a terminar.`,
+            `Princesa de mi cuento, si hoy te falta aliento, recuerda que te quiero en todo momento.`,
+            `Que el estrés se vaya lejos y te deje en paz un rato, y si vuelve a molestarte, ¡yo mismo lo desbarato!`,
+            `Eres luz, eres magia, eres pura energía. ¡No dejes que nada te arruine el día!`,
+            `Si el mundo da vueltas y te hace marear, cierra los ojitos que te voy a cuidar.`,
+            `Aunque la tormenta ruja y el cielo esté nublado, yo siempre seré el solcito que esté a tu lado.`,
+            `Para la niña más bella, mi lucero, mi estrella: que sepas que en este mundo, no hay nadie como ella.`,
+            `Cuenta hasta diez, respira profundo, que tú eres la reina de todo mi mundo.`,
+            `Una rima pequeñita para mi niña bonita: que se vaya la tristeza y vuelva tu sonrisita.`,
+            `Eres mi flor más hermosa, mi jardín más colorido, y en tus brazos, mi amor, siempre encuentro mi nido.`,
+            `Si hoy el día pesa como un elefante, recuerda que mi amor te hace salir adelante.`,
+            `Una caricia en tu pelo, un beso en tu mejilla, para que sepas, mi vida, que eres una maravilla.`,
+            `Deja las penas al viento, que se las lleve volando, mientras yo me quedo aquí, tus penas consolando.`,
+            `No llores mi niña, no sufras mi amor, que mañana sale el sol con mucho más color.`,
+            `Eres la rima más dulce que me pudo tocar, el verso más bonito que nunca dejaré de recitar.`,
+            `Si el mundo es un caos y reina el ruido, en mis abrazos tendrás tu lugar preferido.`,
+            `Por ti yo muevo montañas y cruzo los mares enteros, para que nunca te falten mis mil "te quieros".`,
+            `Sonríe princesa, que la vida es cortita, y tu carita feliz es lo que más necesito.`,
+            `Aunque el día haya sido oscuro y fatal, tú eres mi luz brillante y fenomenal.`,
+            `Cierra los ojitos y piensa en nosotros dos, que no hay nada más fuerte que nuestra propia voz.`,
+            `Que se escape el mal humor, que se esfume el cansancio, que solo quede el amor y nuestro hermoso romance.`,
+            `Eres magia, eres arte, eres pura ilusión, y cada día te adueñas más de mi corazón.`,
+            `Cuando te sientas solita y la carga sea pesada, mírame a los ojitos, mi niña adorada.`,
+            `Aquí estoy de guardia, tu fiel centinela, para ahuyentar las nubes y encenderte una vela.`,
+            `Eres brillante, hermosa y capaz de superar cualquier obstáculo que se te presente.`,
+            `Nunca olvides que tienes un corazón de oro y una mente espectacular.`,
+            `Cada día me enamoro más de tu fuerza, tu inteligencia y tu resiliencia.`,
+            `Eres mi inspiración diaria; si tú puedes con todo esto, yo también.`,
+            `Tómate un momento para respirar y reconocer lo mucho que has avanzado. ¡Eres increíble!`,
+            `El mundo es mucho mejor desde que tú estás en él, no dejes que un mal rato te haga pensar lo contrario.`,
+            `Eres arte, eres poesía, y hasta en tus días de caos, eres perfecta para mí.`,
+            `Ningún día estresante en la historia ha sido rival para tu talento y tu sonrisa.`,
+            `Recuerda que no tienes que ser perfecta, solo tienes que ser tú. Y tú eres maravillosa.`,
+            `Te elijo hoy, te elegiré mañana en tus días buenos, y te elegiré el doble en tus días malos.`,
+            `Tienes una luz propia que nadie te puede quitar, ni siquiera el día más gris.`,
+            `Admirarte es fácil porque haces que todo se vea más bonito, incluso cuando estás cansada.`,
+            `Eres valiente por enfrentar esos días en los que todo parece ir en contra.`,
+            `Qué orgullo ser el novio de una mujer tan fuerte y trabajadora como tú.`,
+            `Tu sonrisa tiene el poder de curar mi día, así que prometo hacer todo para curar el tuyo.`,
+            `Pase lo que pase hoy, llegaré a casa para recordarte lo valiosa que eres.`,
+            `Eres suficiente. Eres capaz. Eres amada. No dejes que la mente te diga lo contrario.`,
+            `No hay meta que no puedas alcanzar ni mal día que te pueda frenar.`,
+            `Mi vida es un millón de veces más bonita porque tú formas parte de ella.`,
+            `Cuando dudes de ti misma, mírate a través de mis ojos. Eres una obra maestra.`,
+            `Hasta en pijama, despeinada y estresada, me pareces la chica más hermosa del planeta.`,
+            `Que nadie te quite la paz, mi amor. Eres dueña de tu destino y de mi corazón entero.`,
+            `El éxito está hecho de días difíciles superados, y tú eres una experta en superar obstáculos.`,
+            `Eres mi hogar, mi paz y mi alegría. Espero ser lo mismo para ti hoy.`,
+            `Y recuerda: te amo muchísimo más de lo que las palabras de esta pantalla pueden expresar.`
+        ];
+
+        // --- LÓGICA DE PROGRAMACIÓN ---
+        const button = document.getElementById('smile-btn');
+        const display = document.getElementById('message-display');
+        let lastIndex = -1;
+
+        button.addEventListener('click', () => {
+            display.classList.remove('fade-in');
+            display.classList.add('fade-out');
+
+            setTimeout(() => {
+                let randomIndex;
+                
+                do {
+                    randomIndex = Math.floor(Math.random() * phrases.length);
+                } while (randomIndex === lastIndex);
+                
+                lastIndex = randomIndex;
+                
+                display.innerText = phrases[randomIndex];
+
+                display.classList.remove('fade-out');
+                display.classList.add('fade-in');
+            }, 400); 
+        });
+    </script>
+</body>
+</html>
