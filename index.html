@@ -3,271 +3,1299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Kit de Emergencia ❤️</title>
-    <!-- Fuentes: Nunito para botones/títulos y Dancing Script para los poemas -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Para Mi Niña Hermosa</title>
     
+    <!-- Importando las tipografías románticas de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:ital@1&display=swap" rel="stylesheet">
+
     <style>
+        /* ==========================================
+           1. VARIABLES DE COLORES (TEMAS VIVOS)
+           ========================================== */
         :root {
-            --gold-primary: #d4af37; /* Dorado metálico elegante */
-            --gold-light: #f9e596;  /* Dorado claro para brillos */
-            --bg-dark: #040914;     /* Azul noche profundo */
-            --card-glass: rgba(11, 29, 58, 0.6); /* Cristal azulado transparente */
-            --text-light: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --particle-color: rgba(255, 64, 129, 0.8);
         }
 
-        * {
+        /* Tema: Día (Tonos Rosados/Rojizos vivos) */
+        body.theme-day {
+            background-image: linear-gradient(-45deg, #ff9a9e, #fecfef, #ffb6c1, #ff758c);
+            --text-color: #d81b60;
+            --btn-color: #ff4081;
+            --btn-hover: #e91e63;
+        }
+
+        /* Tema: Atardecer (Tonos Naranja/Durazno) */
+        body.theme-sunset {
+            background-image: linear-gradient(-45deg, #f6d365, #fda085, #ffb347, #ffcc33);
+            --text-color: #bf360c;
+            --btn-color: #ff7043;
+            --btn-hover: #f4511e;
+        }
+
+        /* Tema: Noche (Tonos Azul Noche profundo) */
+        body.theme-night {
+            background-image: linear-gradient(-45deg, #0f2027, #203a43, #102A54, #0b1930);
+            --text-color: #102A54;
+            --btn-color: #d4af37; /* Dorado */
+            --btn-hover: #b5952f;
+        }
+
+        /* Tema: Aniversario (Días 25 - Tonos Vino dinámicos) */
+        body.theme-anniversary {
+            background-image: linear-gradient(-45deg, #4a0010, #800020, #660018, #3b000d);
+            --text-color: #800020;
+            --btn-color: #d4af37;
+            --btn-hover: #b5952f;
+        }
+
+        /* Tema: Navidad (Tonos Verdes Navideños) */
+        body.theme-christmas {
+            background-image: linear-gradient(-45deg, #0f5132, #11998e, #146c43, #0a3622);
+            --text-color: #b71c1c;
+            --btn-color: #d32f2f;
+            --btn-hover: #9a0007;
+        }
+
+        /* Tema: Año Nuevo (Tonos Oscuros elegantes) */
+        body.theme-newyear {
+            background-image: linear-gradient(-45deg, #000000, #434343, #1a1a1a, #2b2b2b);
+            --text-color: #000000;
+            --btn-color: #d4af37;
+            --btn-hover: #b5952f;
+        }
+
+        /* ==========================================
+           2. ESTILOS GENERALES Y ANIMACIÓN
+           ========================================== */
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Nunito', sans-serif;
-        }
-
-        body {
-            /* Fondo con gradiente azul medianoche animado */
-            background: linear-gradient(-45deg, #020617, #0f172a, #1e3a8a, #0b162c);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
             overflow: hidden;
-            color: var(--text-light);
+            
+            /* Animación mágica del fondo */
+            background-size: 400% 400%;
+            animation: moverFondo 15s ease infinite;
         }
 
-        @keyframes gradientBG {
+        /* Keyframes para que el fondo "respire" cambiando de tonos */
+        @keyframes moverFondo {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* La Tarjeta Central (Efecto Cristal Noche) */
-        .card {
-            background: var(--card-glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 30px;
-            padding: 40px 30px;
-            width: 100%;
-            max-width: 450px;
+        .container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 1px solid rgba(212, 175, 55, 0.3); /* Borde dorado sutil */
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
+            max-width: 80%;
+            width: 400px;
+            z-index: 10;
+            position: relative;
+            backdrop-filter: blur(8px); /* Efecto vidrio esmerilado */
         }
 
-        .header {
-            font-size: 1.2rem;
-            color: var(--gold-primary);
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        h1 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            /* Tipografía romántica, negrita y cursiva */
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 2.8rem; 
+            line-height: 1.2;
+            transition: color 1s ease;
         }
 
-        /* Visor del Mensaje */
-        .message-container {
-            min-height: 180px;
+        #mensaje {
+            color: #333;
+            margin-bottom: 30px;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 10px;
+            /* Tipografía para mensajes (Solo cursiva) */
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            transition: opacity 0.4s ease;
         }
 
-        #message-display {
-            /* ESTILO CURSIVO Y ROMÁNTICO */
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem; /* Más grande para que la cursiva se lea bien */
-            color: var(--gold-light);
-            font-weight: 700;
-            line-height: 1.4;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-        }
-
-        /* Animaciones para el texto */
-        .fade-out {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-
-        .fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* El Gran Botón Dorado */
         button {
-            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light));
-            color: var(--bg-dark); /* Letra azul oscuro para contrastar con el oro */
+            background: var(--btn-color);
+            color: white;
             border: none;
-            padding: 18px 40px;
-            font-size: 1.1rem;
-            font-weight: 800;
+            padding: 15px 30px;
+            font-size: 16px;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
-            transition: transform 0.1s, box-shadow 0.2s;
-            margin-top: 10px;
-            -webkit-tap-highlight-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: background 0.3s, transform 0.2s;
+            font-weight: bold;
+            font-family: 'Segoe UI', sans-serif;
+            width: 100%;
         }
 
-        button:active {
-            transform: scale(0.95);
-            box-shadow: 0 5px 10px rgba(212, 175, 55, 0.4);
+        button:hover {
+            background: var(--btn-hover);
+            transform: scale(1.05);
+        }
+
+        /* Elementos flotantes */
+        .floating-item {
+            position: absolute;
+            bottom: -50px;
+            animation: floatUp linear infinite;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
+    
+    <div id="floating-container"></div>
 
-    <div class="card">
-        <div class="header">
-            Para El Sol Que Ilumina Mis Dias grises, Y La Estrella Que Alumbra En Mi Firmamento💖
-        </div>
-
-        <div class="message-container">
-            <!-- El texto inicial también está en cursiva y dorado -->
-            <p id="message-display">¿Tuviste un día pesado o solo me extrañas? Presiona el botón de abajo :3</p>
-        </div>
-
-        <button id="smile-btn">Quiero verte sonreír ✨</button>
+    <div class="container">
+        <h1 id="titulo">Un mensaje para ti...</h1>
+        <div id="mensaje">Presiona el botón para descubrirlo ❤️</div>
+        <button onclick="generarMensaje()" id="btn-accion">Leer Mensaje :3</button>
     </div>
 
     <script>
-        // --- LOS 100 MENSAJES QUE ESCRIBISTE ---
-        const phrases = [
-            `Respira hondo, mi amor. Todo va a estar bien, y si no, aquí estoy yo para abrazarte.`,
-            `Eres mucho más fuerte de lo que crees, pero hoy se vale estar cansada. Te amo.`,
-            `No dejes que un mal día te haga dudar de lo increíble que eres.`,
-            `Si el mundo pesa mucho hoy, déjame cargarlo un ratito por ti.`,
-            `Cierra los ojos. Imagina que te estoy dando el abrazo más apretado del mundo.`,
-            `Este mensaje es un "Vale" por una tarde de películas, mimos y tu comida favorita.`,
-            `Eres la persona más linda del universo, incluso cuando estás estresada.`,
-            `Un mal día no define tu vida, ni borra tu luz. ¡Brilla, mi amor!`,
-            `Estoy muy orgulloso de ti y de todo el esfuerzo que haces todos los días.`,
-            `Pase lo que pase, recuerda que eres mi lugar favorito en el mundo.`,
-            `Si pudieras verte a través de mis ojos, entenderías por qué nada puede opacar tu belleza.`,
-            `Ojalá pudiera envolver este mensaje en un abrazo y mandártelo para que te abrigue el alma.`,
-            `Hoy puede ser un día pesado, pero mi amor por ti es más ligero y cálido que el sol de la mañana.`,
-            `Respira, mi amor. Mañana es una nueva oportunidad, y yo estaré ahí contigo.`,
-            `Me gustaría poder tomar tu mano ahora mismo y decirte que todo estará bien.`,
-            `Un "te amo" inmenso para la mujer que hace que mi mundo sea un lugar mejor.`,
-            `Déjame ser el refugio donde puedes descansar cuando la vida se ponga ruidosa.`,
-            `Aquí tienes un besito virtual en la frente. De esos que curan cualquier mal rato.`,
-            `No hay tormenta que dure cien años, ni mal día que no curemos estando juntos.`,
-            `Relaja los hombros, suelta el aire, y recuerda que te adoro.`,
-            `Estoy aquí para escucharte, abrazarte o simplemente estar en silencio a tu lado. Lo que necesites.`,
-            `Si el día te trata mal, yo te trataré como la reina que eres.`,
-            `Todo es temporal, excepto las ganas inmensas que tengo de verte sonreír.`,
-            `Que este mensaje sirva como un curita para ese corazón cansadito que tienes hoy.`,
-            `Cuando sientas que no puedes más, recuerda que siempre somos tú y yo contra el mundo.`,
-            `Si hoy fuera un pez, lo devolveríamos al agua. ¡Mañana pescamos algo mejor!`,
-            `¿Día difícil? No te preocupes, yo también odio a todos los que te estresaron hoy.`,
-            `Recuerda: eres demasiado bonita para que el estrés te gane y te saque arrugas.`,
-            `Si alguien te hizo enojar hoy, dime y le echamos una maldición (o le tiramos un globo con agua).`,
-            `Sonríe, que el estrés saca arrugas y tienes una cara muy linda que cuidar.`,
-            `Oficialmente declaro que el día de hoy ha sido cancelado. Reiniciaremos mañana.`,
-            `Eres como mi WiFi: sin ti, me desconecto del mundo. ¡Ánimo, mi router hermoso!`,
-            `Amor, si el estrés quemara calorías, hoy habrías corrido una maratón. ¡Ven a descansar!`,
-            `¡Aviso! Se requiere que dejes de pensar tanto y vengas a darme un beso.`,
-            `Si el mundo hoy fue un villano, yo soy el superhéroe que te trae de cenar.`,
-            `Tengo un plan perfecto: tú, yo, comida deliciosa y que el mundo ruede.`,
-            `¿Sabías que los abrazos reducen el estrés? Ven a cobrar tu dosis diaria obligatoria.`,
-            `El día podrá estar feo, pero tú sigues estando guapísima.`,
-            `Hagamos un trato: tú dejas de estresarte y yo te doy masajes infinitos.`,
-            `Hoy está prohibido estar triste. Por decreto oficial de tu novio.`,
-            `Si la vida te da limones, úsalos para tirárselos a quien te estresó hoy.`,
-            `Oye, niña bonita, deja el ceño fruncido que se te va a quedar así.`,
-            `Que levante la mano la novia más linda del mundo... (Pista: eres tú, levanta la mano).`,
-            `Ya pedí un deseo al universo: que mañana tu único estrés sea decidir qué postre comeremos.`,
-            `Mi amor, el estrés no combina con tu outfit de hoy.`,
-            `Estoy a un mensaje de distancia para ir a rescatarte y llevarte lejos del caos.`,
-            `Si tu día fuera un villano de película, mi amor por ti sería el superpoder que lo derrota.`,
-            `Imagina un perrito bebé tropezando... listo, espero que eso te haya hecho sonreír.`,
-            `Eres demasiado espectacular para que un martes cualquiera te arruine el ánimo.`,
-            `Alguien me dijo que la cura para el estrés es ver una peli conmigo. ¿Lo comprobamos?`,
-            `Si el día se pone gris y te falta la emoción, aquí tienes mis abrazos y todo mi corazón.`,
-            `Un día malo es fugaz, como la espuma del mar, pero el amor que te tengo, nunca se va a terminar.`,
-            `Princesa de mi cuento, si hoy te falta aliento, recuerda que te quiero en todo momento.`,
-            `Que el estrés se vaya lejos y te deje en paz un rato, y si vuelve a molestarte, ¡yo mismo lo desbarato!`,
-            `Eres luz, eres magia, eres pura energía. ¡No dejes que nada te arruine el día!`,
-            `Si el mundo da vueltas y te hace marear, cierra los ojitos que te voy a cuidar.`,
-            `Aunque la tormenta ruja y el cielo esté nublado, yo siempre seré el solcito que esté a tu lado.`,
-            `Para la niña más bella, mi lucero, mi estrella: que sepas que en este mundo, no hay nadie como ella.`,
-            `Cuenta hasta diez, respira profundo, que tú eres la reina de todo mi mundo.`,
-            `Una rima pequeñita para mi niña bonita: que se vaya la tristeza y vuelva tu sonrisita.`,
-            `Eres mi flor más hermosa, mi jardín más colorido, y en tus brazos, mi amor, siempre encuentro mi nido.`,
-            `Si hoy el día pesa como un elefante, recuerda que mi amor te hace salir adelante.`,
-            `Una caricia en tu pelo, un beso en tu mejilla, para que sepas, mi vida, que eres una maravilla.`,
-            `Deja las penas al viento, que se las lleve volando, mientras yo me quedo aquí, tus penas consolando.`,
-            `No llores mi niña, no sufras mi amor, que mañana sale el sol con mucho más color.`,
-            `Eres la rima más dulce que me pudo tocar, el verso más bonito que nunca dejaré de recitar.`,
-            `Si el mundo es un caos y reina el ruido, en mis abrazos tendrás tu lugar preferido.`,
-            `Por ti yo muevo montañas y cruzo los mares enteros, para que nunca te falten mis mil "te quieros".`,
-            `Sonríe princesa, que la vida es cortita, y tu carita feliz es lo que más necesito.`,
-            `Aunque el día haya sido oscuro y fatal, tú eres mi luz brillante y fenomenal.`,
-            `Cierra los ojitos y piensa en nosotros dos, que no hay nada más fuerte que nuestra propia voz.`,
-            `Que se escape el mal humor, que se esfume el cansancio, que solo quede el amor y nuestro hermoso romance.`,
-            `Eres magia, eres arte, eres pura ilusión, y cada día te adueñas más de mi corazón.`,
-            `Cuando te sientas solita y la carga sea pesada, mírame a los ojitos, mi niña adorada.`,
-            `Aquí estoy de guardia, tu fiel centinela, para ahuyentar las nubes y encenderte una vela.`,
-            `Eres brillante, hermosa y capaz de superar cualquier obstáculo que se te presente.`,
-            `Nunca olvides que tienes un corazón de oro y una mente espectacular.`,
-            `Cada día me enamoro más de tu fuerza, tu inteligencia y tu resiliencia.`,
-            `Eres mi inspiración diaria; si tú puedes con todo esto, yo también.`,
-            `Tómate un momento para respirar y reconocer lo mucho que has avanzado. ¡Eres increíble!`,
-            `El mundo es mucho mejor desde que tú estás en él, no dejes que un mal rato te haga pensar lo contrario.`,
-            `Eres arte, eres poesía, y hasta en tus días de caos, eres perfecta para mí.`,
-            `Ningún día estresante en la historia ha sido rival para tu talento y tu sonrisa.`,
-            `Recuerda que no tienes que ser perfecta, solo tienes que ser tú. Y tú eres maravillosa.`,
-            `Te elijo hoy, te elegiré mañana en tus días buenos, y te elegiré el doble en tus días malos.`,
-            `Tienes una luz propia que nadie te puede quitar, ni siquiera el día más gris.`,
-            `Admirarte es fácil porque haces que todo se vea más bonito, incluso cuando estás cansada.`,
-            `Eres valiente por enfrentar esos días en los que todo parece ir en contra.`,
-            `Qué orgullo ser el novio de una mujer tan fuerte y trabajadora como tú.`,
-            `Tu sonrisa tiene el poder de curar mi día, así que prometo hacer todo para curar el tuyo.`,
-            `Pase lo que pase hoy, llegaré a casa para recordarte lo valiosa que eres.`,
-            `Eres suficiente. Eres capaz. Eres amada. No dejes que la mente te diga lo contrario.`,
-            `No hay meta que no puedas alcanzar ni mal día que te pueda frenar.`,
-            `Mi vida es un millón de veces más bonita porque tú formas parte de ella.`,
-            `Cuando dudes de ti misma, mírate a través de mis ojos. Eres una obra maestra.`,
-            `Hasta en pijama, despeinada y estresada, me pareces la chica más hermosa del planeta.`,
-            `Que nadie te quite la paz, mi amor. Eres dueña de tu destino y de mi corazón entero.`,
-            `El éxito está hecho de días difíciles superados, y tú eres una experta en superar obstáculos.`,
-            `Eres mi hogar, mi paz y mi alegría. Espero ser lo mismo para ti hoy.`,
-            `Y recuerda: te amo muchísimo más de lo que las palabras de esta pantalla pueden expresar.`
+        // ==========================================
+        // 3. BASE DE DATOS DE MENSAJES 
+        // ==========================================
+        
+        const mensajesGenerales = [
+            /* MENSAJES GENERALES */
+            "Respira hondo, mi amor. Todo va a estar bien, y si no, aquí estoy yo para abrazarte.",
+            "Eres mucho más fuerte de lo que crees, pero hoy se vale estar cansada. Te amo.",
+            "No dejes que un mal día te haga dudar de lo increíble que eres.",
+            "Si el mundo pesa mucho hoy, déjame cargarlo un ratito por ti.",
+            "Cierra los ojos. Imagina que te estoy dando el abrazo más apretado del mundo.",
+            "Este mensaje es un \"Vale\" por una tarde de películas, mimos y tu comida favorita.",
+            "Eres la persona más linda del universo, incluso cuando estás estresada.",
+            "Un mal día no define tu vida, ni borra tu luz. ¡Brilla, mi amor!",
+            "Estoy muy orgulloso de ti y de todo el esfuerzo que haces todos los días.",
+            "Pase lo que pase, recuerda que eres mi lugar favorito en el mundo.",
+            "Si pudieras verte a través de mis ojos, entenderías por qué nada puede opacar tu belleza.",
+            "Ojalá pudiera envolver este mensaje en un abrazo y mandártelo para que te abrigue el alma.",
+            "Hoy puede ser un día pesado, pero mi amor por ti es más ligero y cálido que el sol de la mañana.",
+            "Respira, mi amor. Mañana es una nueva oportunidad, y yo estaré ahí contigo.",
+            "Me gustaría poder tomar tu mano ahora mismo y decirte que todo estará bien.",
+            "Un \"te amo\" inmenso para la mujer que hace que mi mundo sea un lugar mejor.",
+            "Déjame ser el refugio donde puedes descansar cuando la vida se ponga ruidosa.",
+            "Aquí tienes un besito virtual en la frente. De esos que curan cualquier mal rato.",
+            "No hay tormenta que dure cien años, ni mal día que no curemos estando juntos.",
+            "Relaja los hombros, suelta el aire, y recuerda que te adoro.",
+            "Estoy aquí para escucharte, abrazarte o simplemente estar en silencio a tu lado. Lo que necesites.",
+            "Si el día te trata mal, yo te trataré como la reina que eres.",
+            "Todo es temporal, excepto las ganas inmensas que tengo de verte sonreír.",
+            "Que este mensaje sirva como un curita para ese corazón cansadito que tienes hoy.",
+            "Cuando sientas que no puedes más, recuerda que siempre somos tú y yo contra el mundo.",
+            "Si hoy fuera un pez, lo devolveríamos al agua. ¡Mañana pescamos algo mejor!",
+            "¿Día difícil? No te preocupes, yo también odio a todos los que te estresaron hoy.",
+            "Recuerda: eres demasiado bonita para que el estrés te gane y te saque arrugas.",
+            "Si alguien te hizo enojar hoy, dime y le echamos una maldición (o le tiramos un globo con agua).",
+            "Sonríe, que el estrés saca arrugas y tienes una cara muy linda que cuidar.",
+            "Oficialmente declaro que el día de hoy ha sido cancelado. Reiniciaremos mañana.",
+            "Eres como mi WiFi: sin ti, me desconecto del mundo. ¡Ánimo, mi router hermoso!",
+            "Amor, si el estrés quemara calorías, hoy habrías corrido una maratón. ¡Ven a descansar!",
+            "¡Aviso! Se requiere que dejes de pensar tanto y vengas a darme un beso.",
+            "Si el mundo hoy fue un villano, yo soy el superhéroe que te trae de cenar.",
+            "Tengo un plan perfecto: tú, yo, comida deliciosa y que el mundo ruede.",
+            "¿Sabías que los abrazos reducen el estrés? Ven a cobrar tu dosis diaria obligatoria.",
+            "El día podrá estar feo, pero tú sigues estando guapísima.",
+            "Hagamos un trato: tú dejas de estresarte y yo te doy masajes infinitos.",
+            "Hoy está prohibido estar triste. Por decreto oficial de tu novio.",
+            "Si la vida te da limones, úsalos para tirárselos a quien te estresó hoy.",
+            "Oye, niña bonita, deja el ceño fruncido que se te va a quedar así.",
+            "Que levante la mano la novia más linda del mundo... (Pista: eres tú, levanta la mano).",
+            "Ya pedí un deseo al universo: que mañana tu único estrés sea decidir qué postre comeremos.",
+            "Mi amor, el estrés no combina con tu outfit de hoy.",
+            "Estoy a un mensaje de distancia para ir a rescatarte y llevarte lejos del caos.",
+            "Si tu día fuera un villano de película, mi amor por ti sería el superpoder que lo derrota.",
+            "Imagina un perrito bebé tropezando... listo, espero que eso te haya hecho sonreír.",
+            "Eres demasiado espectacular para que un martes cualquiera te arruine el ánimo.",
+            "Alguien me dijo que la cura para el estrés es ver una peli conmigo. ¿Lo comprobamos?",
+            "Si el día se pone gris y te falta la emoción, aquí tienes mis abrazos y todo mi corazón.",
+            "Un día malo es fugaz, como la espuma del mar, pero el amor que te tengo, nunca se va a terminar.",
+            "Princesa de mi cuento, si hoy te falta aliento, recuerda que te quiero en todo momento.",
+            "Que el estrés se vaya lejos y te deje en paz un rato, y si vuelve a molestarte, ¡yo mismo lo desbarato!",
+            "Eres luz, eres magia, eres pura energía. ¡No dejes que nada te arruine el día!",
+            "Si el mundo da vueltas y te hace marear, cierra los ojitos que te voy a cuidar.",
+            "Aunque la tormenta ruja y el cielo esté nublado, yo siempre seré el solcito que esté a tu lado.",
+            "Para la niña más bella, mi lucero, mi estrella: que sepas que en este mundo, no hay nadie como ella.",
+            "Cuenta hasta diez, respira profundo, que tú eres la reina de todo mi mundo.",
+            "Una rima pequeñita para mi niña bonita: que se vaya la tristeza y vuelva tu sonrisita.",
+            "Eres mi flor más hermosa, mi jardín más colorido, y en tus brazos, mi amor, siempre encuentro mi nido.",
+            "Si hoy el día pesa como un elefante, recuerda que mi amor te hace salir adelante.",
+            "Una caricia en tu pelo, un beso en tu mejilla, para que sepas, mi vida, que eres una maravilla.",
+            "Deja las penas al viento, que se las lleve volando, mientras yo me quedo aquí, tus penas consolando.",
+            "No llores mi niña, no sufras mi amor, que mañana sale el sol con mucho más color.",
+            "Eres la rima más dulce que me pudo tocar, el verso más bonito que nunca dejaré de recitar.",
+            "Si el mundo es un caos y reina el ruido, en mis abrazos tendrás tu lugar preferido.",
+            "Por ti yo muevo montañas y cruzo los mares enteros, para que nunca te falten mis mil \"te quieros\".",
+            "Sonríe princesa, que la vida es cortita, y tu carita feliz es lo que más necesito.",
+            "Aunque el día haya sido oscuro y fatal, tú eres mi luz brillante y fenomenal.",
+            "Cierra los ojitos y piensa en nosotros dos, que no hay nada más fuerte que nuestra propia voz.",
+            "Que se escape el mal humor, que se esfume el cansancio, que solo quede el amor y nuestro hermoso romance.",
+            "Eres magia, eres arte, eres pura ilusión, y cada día te adueñas más de mi corazón.",
+            "Cuando te sientas solita y la carga sea pesada, mírame a los ojitos, mi niña adorada.",
+            "Aquí estoy de guardia, tu fiel centinela, para ahuyentar las nubes y encenderte una vela.",
+            "Eres brillante, hermosa y capaz de superar cualquier obstáculo que se te presente.",
+            "Nunca olvides que tienes un corazón de oro y una mente espectacular.",
+            "Cada día me enamoro más de tu fuerza, tu inteligencia y tu resiliencia.",
+            "Eres mi inspiración diaria; si tú puedes con todo esto, yo también.",
+            "Tómate un momento para respirar y reconocer lo mucho que has avanzado. ¡Eres increíble!",
+            "El mundo es mucho mejor desde que tú estás en él, no dejes que un mal rato te haga pensar lo contrario.",
+            "Eres arte, eres poesía, y hasta en tus días de caos, eres perfecta para mí.",
+            "Ningún día estresante en la historia ha sido rival para tu talento y tu sonrisa.",
+            "Recuerda que no tienes que ser perfecta, solo tienes que ser tú. Y tú eres maravillosa.",
+            "Te elijo hoy, te elegiré mañana en tus días buenos, y te elegiré el doble en tus días malos.",
+            "Tienes una luz propia que nadie te puede quitar, ni siquiera el día más gris.",
+            "Admirarte es fácil porque haces que todo se vea más bonito, incluso cuando estás cansada.",
+            "Eres valiente por enfrentar esos días en los que todo parece ir en contra.",
+            "Qué orgullo ser el novio de una mujer tan fuerte y trabajadora como tú.",
+            "Tu sonrisa tiene el poder de curar mi día, así que prometo hacer todo para curar el tuyo.",
+            "Pase lo que pase hoy, llegaré a casa para recordarte lo valiosa que eres.",
+            "Eres suficiente. Eres capaz. Eres amada. No dejes que la mente te diga lo contrario.",
+            "No hay meta que no puedas alcanzar ni mal día que te pueda frenar.",
+            "Mi vida es un millón de veces más bonita porque tú formas parte de ella.",
+            "Cuando dudes de ti misma, mírate a través de mis ojos. Eres una obra maestra.",
+            "Hasta en pijama, despeinada y estresada, me pareces la chica más hermosa del planeta.",
+            "Que nadie te quite la paz, mi amor. Eres dueña de tu destino y de mi corazón entero.",
+            "El éxito está hecho de días difíciles superados, y tú eres una experta en superar obstáculos.",
+            "Eres mi hogar, mi paz y mi alegría. Espero ser lo mismo para ti hoy.",
+            "Y recuerda: te amo muchísimo más de lo que las palabras de esta pantalla pueden expresar.",
+            "Eres la casualidad más hermosa que me ha regalado la vida.",
+            "Cada vez que sonríes, mi mundo entero se ilumina.",
+            "Tienes el superpoder de hacerme feliz con solo existir.",
+            "No importa qué tan pesado sea mi día, saber que te veré me da fuerzas para cargar con todo.",
+            "Eres mi pensamiento favorito antes de dormir y al despertar.",
+            "Tu voz es la melodía que calma cualquier tormenta en mi mente.",
+            "Me haces querer ser una mejor versión de mí mismo cada día.",
+            "Si me dieran a elegir, te elegiría a ti en esta y en todas las vidas.",
+            "Eres el refugio perfecto cuando el mundo hace demasiado ruido.",
+            "Ni el sol más brillante calienta tanto como uno de tus abrazos.",
+            "Tienes magia en la mirada y paz en las manos.",
+            "Ver tu nombre en mi pantalla es mi momento favorito del día.",
+            "Haces que lo ordinario se vuelva extraordinario solo por estar ahí.",
+            "Me encantas en todas tus facetas, hasta cuando te enojas un poquito.",
+            "Llevo un audífono puesto en el trabajo, pero la única voz que quiero escuchar es la tuya.",
+            "Contigo todo es más fácil, más bonito y más real.",
+            "Eres la pieza que no sabía que le faltaba a mi vida.",
+            "Te admiro por lo valiente, lista y hermosa que eres.",
+            "A tu lado, el tiempo vuela, pero los recuerdos se quedan para siempre.",
+            "Eres mi lugar seguro, mi paz y mi mayor alegría.",
+            "Cada detalle tuyo me enamora un poco más.",
+            "Eres más bonita que cualquier atardecer que haya visto.",
+            "Tienes una luz que ilumina hasta el día más gris y pesado.",
+            "Me haces sentir que puedo lograr cualquier cosa.",
+            "Eres la dueña de todos mis suspiros.",
+            "Tu sonrisa es mi recompensa favorita después de un día de trabajo duro.",
+            "Me pierdo en tus ojos y me encuentro en tu corazón.",
+            "Eres mi sueño hecho realidad.",
+            "Contigo descubrí que el amor de verdad sí existe.",
+            "Te amo más hoy que ayer, pero menos que mañana.",
+            "Haces que mi corazón lata a mil por hora.",
+            "Eres la dueña de mis pensamientos más bonitos.",
+            "Mi café favorito siempre será el que tomo mirándote.",
+            "No hay lugar en el mundo donde prefiera estar que a tu lado.",
+            "Eres mi presente favorito y el futuro que más deseo.",
+            "Tu amor es mi motor para dar el 100% todos los días.",
+            "Eres la poesía más linda que el universo pudo escribir.",
+            "En tus brazos encuentro la calma que el mundo me quita.",
+            "Eres mi inspiración constante.",
+            "Gracias por ser tal como eres: perfecta para mí.",
+            "Haces que mi vida tenga los colores más hermosos.",
+            "Eres el motivo por el que sonrío sin darme cuenta.",
+            "Tu risa es la banda sonora de mi vida.",
+            "Si amarte es un sueño, por favor no me despiertes nunca.",
+            "Eres mi todo en un mundo lleno de nadas.",
+            "A tu lado, hasta el silencio es cómodo y hermoso.",
+            "Eres la dueña de mis madrugadas y de mis desvelos.",
+            "Tu amor me hace invencible.",
+            "Eres el regalo que no sabía que necesitaba.",
+            "Te llevo en mi mente a cada paso que doy.",
+            "Tus besos son el único vicio que quiero tener.",
+            "Me provocas cosas que ni yo mismo sabía que podía sentir.",
+            "Esa forma en la que me miras me vuelve completamente loco.",
+            "Eres mi tentación favorita y mi mayor debilidad.",
+            "Cuando te acercas, mi mundo se detiene y mi corazón se acelera.",
+            "Tienes el control absoluto de mis ganas de ti.",
+            "Tus labios deberían ser declarados la octava maravilla del mundo.",
+            "Me encanta la química que tenemos, es fuego puro.",
+            "Eres el pecado más dulce que he cometido.",
+            "Cada roce tuyo enciende algo nuevo en mí.",
+            "Tienes una manera de mirarme que me desarma por completo.",
+            "Mis ganas de ti no se apagan, solo crecen más y más.",
+            "Me haces desear que las horas a tu lado no terminen nunca.",
+            "Eres fuego, y yo estoy feliz de quemarme contigo.",
+            "La forma en que sonríes de lado me deja sin palabras.",
+            "Tus abrazos son el lugar donde quiero quedarme atrapado.",
+            "Me encanta cómo encajas perfectamente en mis brazos.",
+            "Tienes ese \"no sé qué\" que me vuelve loco de remate.",
+            "Tu aroma es mi droga favorita.",
+            "Me provocas ser el mejor hombre para ti en todos los sentidos.",
+            "Tus labios son mi destino favorito.",
+            "Me dejas sin aliento cada vez que te arreglas para mí.",
+            "Eres una mezcla perfecta de ternura y fuego.",
+            "El deseo que siento por ti es más fuerte que cualquier cosa.",
+            "Podría pasarme la vida entera explorando tu piel.",
+            "Me vuelves loco con tan solo rozar mi mano.",
+            "Eres la dueña de mis fantasías más hermosas.",
+            "Cada vez que te beso, el mundo desaparece.",
+            "Eres el fuego que calienta mis días y mis noches.",
+            "Me encanta la forma en la que me haces sentir vivo.",
+            "Tus caricias son el mapa que quiero seguir siempre.",
+            "Eres la pasión que le faltaba a mi rutina.",
+            "Me derrites con una sola mirada.",
+            "Tienes el poder de acelerar mi pulso en un segundo.",
+            "Tu cuerpo y el mío hablan un idioma que solo nosotros entendemos.",
+            "Me encantas de pies a cabeza, sin excepción.",
+            "Eres la adicción más hermosa que podría tener.",
+            "Tienes el beso perfecto para cada momento.",
+            "Me vuelves loco cuando te muerdes el labio.",
+            "Eres la chispa que enciende mi vida entera.",
+            "Tus manos en mi cuello son mi debilidad.",
+            "Me haces sentir que el mundo nos pertenece.",
+            "Eres mi deseo hecho persona.",
+            "Me encanta cómo el tiempo se detiene cuando nos besamos.",
+            "Tu piel contra mi piel es mi sensación favorita.",
+            "Eres la mujer más atractiva del universo, sin duda.",
+            "Me provocas amarte sin medida y sin control.",
+            "Cada beso tuyo es un viaje al paraíso.",
+            "Eres el fuego que nunca quiero apagar.",
+            "Me tienes completamente hechizado, y me encanta.",
+            "Eres el único \"problema\" que me gusta tener.",
+            "Te quiero más que a dormir hasta tarde en domingo.",
+            "Si el amor engordara, yo ya sería una bolita rodante.",
+            "Me encantas tanto que hasta perdono que te robes mis papas fritas.",
+            "Eres la única persona a la que le permitiría cambiar mi lista de música.",
+            "Nuestro nivel de locura encaja a la perfección.",
+            "Te quiero como para hacer dieta juntos y romperla el mismo día.",
+            "Eres el \"jajaja\" de todos mis chats.",
+            "Me gustas más que el WiFi gratis y rápido.",
+            "Tienes cara de que te gustan los besos robados, ¿probamos?",
+            "Eres la razón por la que miro el celular y sonrío como tonto.",
+            "Te amo tanto que te dejaría el último pedazo de pizza (y eso es mucho decir).",
+            "Eres mi notificación favorita de todo el día.",
+            "Haces que mis días tengan mejor diseño, como una fachada moderna y perfecta.",
+            "Si me pagaran por pensar en ti, ya sería millonario.",
+            "Me gustas tanto que no me importa que me dejes en visto por estar dormida.",
+            "Eres la prueba de que tengo un gusto excelente.",
+            "Te quiero para que seas la causante de mis desvelos y mis ojeras.",
+            "Si fueras un postre, serías el más caro y delicioso del menú.",
+            "Me tienes tan loco que ya parezco un meme enamorado.",
+            "Eres mi dolor de cabeza favorito.",
+            "Te quiero para llenarte de besos hasta que te hartes (o sea, nunca).",
+            "Eres la única que me hace poner nervioso con un simple \"hola\".",
+            "Hacemos mejor equipo que Batman y Robin.",
+            "Si fueras un delito, ya estaría cumpliendo cadena perpetua feliz.",
+            "Me gustas más que dormir después de un día de levantar pesas en el trabajo.",
+            "Te quiero como para no aburrirme de ti ni en cuarentena.",
+            "Eres la dueña de mis sonrisas más tontas.",
+            "Te amo tanto que te soportaría hasta con hambre.",
+            "Eres el \"buenos días\" que me quita el mal humor.",
+            "Me tienes a tus pies, y no me quejo para nada.",
+            "Si el amor fuera un deporte, nosotros ya tendríamos la medalla de oro.",
+            "Te quiero para ver películas y terminar durmiéndonos a los 10 minutos.",
+            "Eres mi excusa perfecta para estar feliz sin motivo.",
+            "Me gustas tanto que te invitaría a comer todos los días de mi vida.",
+            "Eres la única persona con la que compartiría mi cobija en invierno.",
+            "Te quiero para abrazarte hasta dejarte sin aire.",
+            "Eres el sticker favorito de mis conversaciones.",
+            "Me tienes tan enamorado que ya hablo solo de ti.",
+            "Eres la culpable de que siempre traiga una sonrisa en la cara.",
+            "Te quiero para hacerte cosquillas hasta que llores de risa.",
+            "Eres la mejor inversión de mi tiempo.",
+            "Me gustas más que encontrar dinero en el bolsillo del pantalón.",
+            "Te amo tanto que te aguantaría viendo tu serie favorita por enésima vez.",
+            "Eres mi \"plan de viernes en la noche\" favorito.",
+            "Me tienes tan loco que ya no sé si vivo en la realidad o en un sueño.",
+            "Te quiero para robarte besos cuando menos te lo esperes.",
+            "Eres mi cómplice perfecta para cualquier locura.",
+            "Me gustas más que el viernes a las 5 de la tarde.",
+            "Te amo tanto que dejaría de jugar videojuegos solo para hablar contigo.",
+            "Si amarte es un arte, yo soy tu mayor museo, porque verte sonreír es todo lo que deseo.",
+            "Eres la flor más linda de todo mi jardín, mi amor por ti no tiene principio ni fin.",
+            "En tus ojos veo estrellas, en tu risa mi canción, tú te has vuelto dueña de todo mi corazón.",
+            "De lunes a domingo, sin parar ni descansar, eres la única mujer a la que quiero yo amar.",
+            "Ni la brisa más suave ni el rayo de sol brillante, se comparan con tu rostro en un solo instante.",
+            "Eres magia, eres calma, eres mi paz interior, en tus brazos he encontrado el verdadero amor.",
+            "Un beso tuyo me cura, tu abrazo me da calor, no hay duda mi niña hermosa, de que tú eres mi motor.",
+            "Si el cielo cayera hoy o el mundo se detuviera, yo te seguiría amando de la misma manera.",
+            "Tu voz es mi melodía, tu mirada mi farol, eres tú mi niña linda la que me roba el control.",
+            "De tantas opciones libres que había en el universo, yo te elegí para siempre como rima de mis versos.",
+            "Quiero ser tu abrigo fuerte cuando llegue el crudo invierno, y que sepas que mi amor siempre va a serte eterno.",
+            "Una sonrisa en tu boca es la paz de mi cabeza, eres reina de mi mundo, mi más grande realeza.",
+            "No hay poema suficiente ni canción espectacular, que describa lo que siento cuando te veo pasar.",
+            "En el norte o en el sur, en la noche o en el día, eres tú, mi bella luz, mi más grande alegría.",
+            "Eres sol de mis mañanas y la luna en mis desvelos, por tocar tus suaves labios yo me subiría a los cielos.",
+            "No me importa el cansancio ni la carga de la vida, si al llegar la noche oscura tú me curas la herida.",
+            "Si me pierdo en tu mirada no me intentes rescatar, que es el único lugar donde me quiero quedar.",
+            "Eres flor en primavera, eres brisa de verano, no hay nada que me guste más que tomar tu linda mano.",
+            "Tu risa es el conjuro que ahuyenta mis espantos, por ti yo cruzo los mares y me enfrento a mil encantos.",
+            "Si el destino estaba escrito, tú eres mi mejor línea, la mujer más hermosa y la que mi mundo domina.",
+            "Entre besos y abrazos, entre risas y locura, he encontrado a tu lado la más dulce aventura.",
+            "Eres sueño del que nunca me quisiera despertar, eres el amor sincero que por fin pude encontrar.",
+            "Cada paso que yo doy tiene un solo objetivo: hacerte siempre feliz y sentir que estoy más vivo.",
+            "No hay tesoro en esta tierra que supere tu valor, eres oro, eres diamante, eres mi más grande amor.",
+            "En tus labios está el cielo, en tus ojos la verdad, a tu lado he conocido la completa felicidad.",
+            "Si un día te sientes triste y la vida se oscurece, yo seré tu sol brillante que en la sombra resplandece.",
+            "Eres música suave en medio de tanto ruido, el latido más hermoso que mi pecho ha conocido.",
+            "Por ti pinto las paredes y decoro el mundo entero, para que sepas, mi vida, lo muchísimo que te quiero.",
+            "Ni el calor de todo el sol de mi Trujillo querido, quema tanto como el fuego que en mi pecho has encendido.",
+            "Un te amo se queda corto, un abrazo no es suficiente, quiero darte el mundo entero y amarte eternamente.",
+            "En tus manos mi destino, en tus ojos mi verdad, quiero ser quien te acompañe a la misma eternidad.",
+            "Eres la casualidad que buscaba sin saberlo, y ahora que te tengo aquí no quiero nunca perderlo.",
+            "Un suspiro de tu boca, una caricia en mi piel, eres dulce, eres hermosa, eres miel sobre hojuelas.",
+            "No hay reloj que marque el tiempo cuando te tengo a mi lado, estoy loco, estoy perdido, completamente enamorado.",
+            "Que se pare el universo, que no gire el mundo más, que me quedo aquí contigo donde encuentro solo paz.",
+            "Tus ojitos son dos soles, tu sonrisa mi motor, eres reina de mis sueños y de mi más grande amor.",
+            "Si la vida es un viaje tú eres mi mejor destino, la luz brillante y hermosa que ilumina mi camino.",
+            "Un segundo de tu tiempo me devuelve a mí la vida, eres tú mi niña hermosa, mi princesa consentida.",
+            "Ni las rimas de Bécquer ni los versos de Neruda, superan lo que yo siento por ti sin ninguna duda.",
+            "Eres magia de verdad, ilusión hecha persona, eres la única reina a la que doy la corona.",
+            "En el lienzo de mi vida tú eres el mejor color, la pintura más brillante hecha solo con amor.",
+            "No hay tormenta que me asuste si me tomas de la mano, a tu lado el mundo cruel se convierte en algo llano.",
+            "Eres flor de la mañana, eres brisa del mar, eres el lugar seguro donde me quiero anclar.",
+            "Si me das un solo beso yo te entrego mi existir, que sin ti, mi niña bella, yo no sé lo que es vivir.",
+            "Un abrazo tuyo cura cualquier pena de mi alma, eres tempestad de fuego y también mi dulce calma.",
+            "No hay estrella en el cielo que brille más que tu cara, eres tú la joya fina que a mi vida la repara.",
+            "Tus palabras son poesía, tus miradas mi condena, pero juro que quererte, vale toda la pena.",
+            "Eres dueña del espacio, eres reina del lugar, eres la dueña del pecho que te quiere a ti adorar.",
+            "Si el amor fuera un delito yo sería un gran ladrón, porque juro que he robado todo tu corazón.",
+            "Cada rima que te escribo tiene un solo remitente: el chico que está contigo y te ama eternamente."
+            "¡Ey, tú! Sí, tú, la de la sonrisa bonita. Solo paso a decirte que te amo.",
+            "Si el trabajo está pesado, recuerda que mis brazos están ligeros esperándote.",
+            "Un besito rápido para que te llenes de energía y sigas rompiéndola.",
+            "Eres la más capa de todas. ¡Tú puedes con todo lo de hoy!",
+            "Pausa activa: respira profundo y piensa en cuánto me gustas. Listo, puedes seguir.",
+            "No dejes que nadie borre tu sonrisa hoy. Eres demasiado espectacular.",
+            "Solo quería interrumpirte un segundo para decirte que me traes loco.",
+            "¡Fuerza, mi amor! Ya falta menos para vernos y llenarte de mimos.",
+            "Eres más eficiente que cualquier inteligencia artificial. ¡Te admiro!",
+            "Si te estresas, imagíname haciéndote masajes en la espalda.",
+            "Paso por aquí para dejarte un vale por una cena deliciosa hoy en la noche.",
+            "Que tu café esté fuerte y tu día esté corto, mi amor.",
+            "Eres una diosa guerrera en modo laboral. ¡A darle con todo!",
+            "Sé que estás ocupada, así que solo te dejo un \"te amo\" chiquito por aquí.",
+            "Eres brillante. No permitas que ningún problema laboral te apague.",
+            "¡Ánimo, bonita! El día es tuyo para conquistarlo.",
+            "Un recordatorio amigable de que soy tu fan número uno en todo lo que haces.",
+            "Estoy levantando cajas ahora mismo, pero tú levantas mis ánimos con solo existir.",
+            "Si el jefe se pone pesado, me avisas y lo fulmino con la mirada.",
+            "Tú sigue trabajando así de hermoso, que yo me encargo de amarte incondicionalmente.",
+            "Eres el orgullo más grande de este humilde servidor enamorado.",
+            "Tómate un descansito, mi vida. Hasta las máquinas necesitan pausar.",
+            "Que todo te salga excelente hoy. Confío en ti con los ojos cerrados.",
+            "Si el estrés ataca, recuerda que mi abrazo contraataca esta noche.",
+            "Eres increíble, capaz e inteligentísima. Que nadie te diga lo contrario.",
+            "Un te amo en medio de la oficina/trabajo para que sonrías a la pantalla.",
+            "Ya casi, mi amor, ya casi. ¡El descanso se acerca!",
+            "Paso a reportarme como tu admirador secreto (ya no tan secreto).",
+            "Que la rutina no te quite las ganas de comerte al mundo.",
+            "Eres luz. Ilumina tu espacio y demuestra de qué estás hecha.",
+            "¡Vamos, mi vida! Yo creo en ti más que en cualquier cosa.",
+            "Si te cansas, avísame y te mando ánimos por delivery.",
+            "Eres pura inspiración. Me encanta ver cómo te esfuerzas por tus metas.",
+            "Que tu día sea tan productivo como hermoso es tu rostro.",
+            "No olvides tomar agua, respirar y recordar que te adoro.",
+            "Un mensaje sorpresa para la chica más trabajadora que conozco.",
+            "Tú puedes con esto y con más. Eres imparable.",
+            "Que nadie frene tu talento hoy. Ve y brilla, princesa.",
+            "Solo paso a decirte que estoy muy orgulloso de tus pequeños logros diarios.",
+            "Imagina que te doy un beso en la mejilla de \"buena suerte\".",
+            "Eres la jefa de mi corazón. ¡Que tengas un excelente día laboral!",
+            "¡Sonríe! Esa es tu mejor herramienta para hoy.",
+            "Mi amor por ti es más constante que tu horario de trabajo.",
+            "Que las horas vuelen para que pronto estés a mi lado.",
+            "Eres magia pura en todo lo que haces. ¡Concéntrate y triunfa!",
+            "Un apapacho a distancia para que no te sientas solita en el estrés.",
+            "Estoy pensando en ti, ojalá eso te ayude a sobrellevar el día.",
+            "¡Dale con todo, mi amor! Eres invencible.",
+            "Solo un momento para decir: te extraño y te admiro.",
+            "Recuerda que al final del día, tienes un lugar calentito esperándote en mis brazos.",
+            "Prometo ser tu calma en tus días de tormenta, hoy y siempre.",
+            "Quiero caminar de tu mano por todos los caminos que la vida nos ponga.",
+            "Eres mi proyecto de vida favorito.",
+            "Te prometo risas cuando estés feliz y mi hombro cuando necesites llorar.",
+            "Mi amor por ti no sabe de límites ni de condiciones, es tuyo por completo.",
+            "Quiero coleccionar momentos contigo hasta que seamos viejitos.",
+            "Prometo cuidarte como el tesoro más grande que la vida me confió.",
+            "Eres mi hogar, y prometo mantener este hogar siempre lleno de amor.",
+            "Te ofrezco mi lealtad, mi respeto y mis ganas locas de hacerte feliz.",
+            "Quiero ser el motivo de tu sonrisa por muchísimos años más.",
+            "Prometo escucharte siempre, incluso cuando solo quieras hablar de tonterías.",
+            "Eres el futuro que siempre soñé y el presente que no quiero dejar ir.",
+            "Te elijo hoy y prometo seguir eligiéndote cada mañana.",
+            "Quiero llenar tu vida de detalles, de besos y de paz.",
+            "Prometo ser tu compañero de equipo en las buenas y en las malas.",
+            "Eres mi certeza más linda en un mundo de dudas.",
+            "Te juro que mi amor es real, sincero y completamente tuyo.",
+            "Quiero ser quien te prepare el café cuando seamos mayores.",
+            "Prometo aprender de mis errores para ser el hombre que mereces.",
+            "Eres la historia de amor que quiero contar toda mi vida.",
+            "Te prometo mi apoyo incondicional en todas tus metas y locuras.",
+            "Quiero volar contigo, caer contigo y levantarme contigo siempre.",
+            "Prometo que la magia que sentimos hoy será cuidada como cristal.",
+            "Eres la dueña de mis promesas más profundas y verdaderas.",
+            "Te prometo besos en la frente cada noche de nuestra vida.",
+            "Quiero que nuestro amor sea la fuerza que mueva nuestro mundo.",
+            "Prometo abrazarte por la espalda cuando menos lo esperes.",
+            "Eres mi todo, y prometo darte todo de mí a cambio.",
+            "Te ofrezco mi paciencia infinita y mi amor sin medidas.",
+            "Quiero crecer a tu lado, como pareja y como personas.",
+            "Prometo amarte en tus días grises tanto como en los soleados.",
+            "Eres el destino final de mi corazón, no busco más.",
+            "Te prometo que, pase lo que pase, mi mano no soltará la tuya.",
+            "Quiero ser el motivo de que creas en el amor verdadero.",
+            "Prometo hacerte sentir especial no solo hoy, sino cada día.",
+            "Eres el sueño por el que estoy dispuesto a luchar siempre.",
+            "Te ofrezco una vida de complicidad y risas genuinas.",
+            "Quiero ser tu primer pensamiento feliz del día, por siempre.",
+            "Prometo que mi amor será tu refugio constante.",
+            "Eres la razón por la que quiero que el tiempo se vuelva eterno.",
+            "Te prometo lealtad ciega y un amor que no se rinde.",
+            "Quiero construir a tu lado un imperio de felicidad.",
+            "Prometo que nunca te faltarán palabras dulces de mi parte.",
+            "Eres la única persona a la que quiero entregarle mi vida entera.",
+            "Te ofrezco mis brazos como tu hogar definitivo.",
+            "Quiero mirarte en unos años y decir: \"valió la pena todo\".",
+            "Prometo enamorarte todos los días con detalles pequeños y grandes.",
+            "Eres mi promesa de felicidad cumplida.",
+            "Te prometo que, si te caes, caeré contigo para impulsarnos juntos.",
+            "Quiero ser el amor de tu vida, hoy, mañana y siempre.",
+            "Buenos días, mi amor. Despierta que el mundo necesita tu brillo.",
+            "Hoy amanecí pensando en ti, como siempre, pero con más ganas de besarte.",
+            "Que tengas un día tan espectacular como la sonrisa que seguro tienes ahora.",
+            "Buenos días, princesa. Que hoy te pase de todo, pero que todo sea bonito.",
+            "Despertar sabiendo que estás en mi vida es la mejor forma de empezar el día.",
+            "Arriba, mi dormilona favorita. Es hora de conquistar el mundo.",
+            "Buenos días a la mujer que hace mis días perfectos.",
+            "Te mando un beso de buenos días que te dure hasta que nos veamos.",
+            "Que hoy sea un día lleno de éxitos y de cosas buenas para ti.",
+            "Buenos días, mi cielo. El sol salió hoy solo para imitar tu brillo.",
+            "Espero que tu café esté rico y tu día sea maravilloso. Te amo.",
+            "Despierta, amor, que quiero que sepas que eres mi primer pensamiento.",
+            "Buenos días, hermosa. No olvides lo muchísimo que te adoro.",
+            "Que hoy nada borre esa sonrisa tuya que tanto me enamora.",
+            "Buenos días a mi persona favorita de todo el planeta.",
+            "Abre esos ojitos lindos, el día de hoy es una nueva oportunidad para amarte.",
+            "Que tengas un excelente día, mi guerrera hermosa.",
+            "Buenos días, mi vida. Te envío toda la buena energía desde temprano.",
+            "Eres mi sol de cada mañana. ¡Despierta ya, mi amor!",
+            "Que hoy recibas tantas alegrías como las que tú me das a mí.",
+            "Buenos días a la reina de mis sueños y de mis realidades.",
+            "Me acabo de despertar y ya estoy contando las horas para verte.",
+            "Que tu día sea ligero, feliz y lleno de bendiciones. Te quiero.",
+            "Buenos días, preciosa. Eres el motor que arranca mi jornada.",
+            "Un mensajito tempranero para recordarte que eres la mejor.",
+            "Arriba esos ánimos, mi amor. Hoy vas a triunfar en todo.",
+            "Buenos días a la dueña absoluta de mi corazón.",
+            "Que el universo te sorprenda hoy con cosas maravillosas. Te amo.",
+            "Despertar es genial porque significa otro día más amándote.",
+            "Buenos días, mi niña bonita. Que tu día sea tan dulce como tú.",
+            "Eres como una melodía perfecta en mi auricular, inigualable.",
+            "Amor, Mi Orgullo, Razón de mi ser.",
+            "Tienes el encanto de la luna y la energía del sol al mediodía.",
+            "Preciosa, Amable, Zen... me das pura paz.",
+            "Eres como la fachada más hermosa, que invita a admirarla cada día.",
+            "Valiente, Inteligente, Divina, Amada. Eres mi VIDA.",
+            "Si fueras una obra de arte, estarías en el museo más caro de París.",
+            "Linda, Unica, Zafiro. Eres mi LUZ.",
+            "Eres el oasis perfecto en el desierto de mi rutina.",
+            "Cariñosa, Igualable no eres, Eres Lo Optimo. Mi CIELO.",
+            "Tienes la sonrisa más fotogénica que el lente de mis ojos ha captado.",
+            "Eres como un buen café: me despiertas y me llenas de energía.",
+            "Mágica, Increíble, Adorable. Eres MÍA.",
+            "Tu mirada tiene el magnetismo que atrae toda mi atención.",
+            "Eres mi canción en modo \"repetir\", no me canso de ti.",
+            "Sincera, Orgullosa, Leal. Eres mi SOL.",
+            "Si la perfección fuera persona, se apellidaría como tú.",
+            "Eres el viento que impulsa mis alas hacia adelante.",
+            "Como un imán al metal, así atraes mi corazón sin esfuerzo.",
+            "Eres la vitamina que le faltaba a mi corazón cansado.",
+            "Me encanta cómo se te arruga la nariz cuando te ríes.",
+            "Tienes una inteligencia que me deja con la boca abierta.",
+            "Admiro tu capacidad para resolver problemas sin perder la calma.",
+            "Eres tan genuina que es imposible no caer rendido a tus pies.",
+            "Amo tu forma de ver la vida, llena de positivismo y color.",
+            "Me fascina cómo defiendes lo que crees. Eres fuerte y valiente.",
+            "Tienes un corazón tan grande que no sé cómo te cabe en el pecho.",
+            "Me encanta escucharte hablar de las cosas que te apasionan.",
+            "Eres mi modelo a seguir en muchas cosas, ¿lo sabías?",
+            "Tu empatía hacia los demás te hace la mujer más hermosa por dentro.",
+            "Admiro cómo te levantas después de cada tropiezo, más fuerte que antes.",
+            "Tienes un talento natural para hacer que todos se sientan especiales.",
+            "Me encanta cómo te cuidas a las personas que amas. Eres protectora y tierna.",
+            "Eres un mar de sorpresas, cada día descubro algo nuevo que amo de ti.",
+            "Tienes la habilidad de hacer que lo complicado parezca sencillo.",
+            "Admiro tu fuerza de voluntad. Eres inquebrantable.",
+            "Me encanta cómo te concentras cuando estás haciendo algo importante.",
+            "Eres la mujer más auténtica que he conocido en mi vida.",
+            "Tu bondad es el rasgo que más me enamora de ti.",
+            "Admiro la pasión que le pones a cada pequeño detalle de tus días.",
+            "Me acabo de cruzar con algo que me recordó a ti y sonreí.",
+            "Solo pasaba a decirte que te extraño muchísimo.",
+            "Estaba pensando en lo bonita que estabas la última vez que te vi.",
+            "No sé qué magia tienes, pero no sales de mi cabeza ni un segundo.",
+            "Quería enviarte un audio, pero preferí dejarte esto por escrito: Te amo.",
+            "Estoy haciendo mis cosas, pero mi mente está contigo.",
+            "Si pudieras ver mi cara ahora mismo, sabrías que estoy pensando en ti.",
+            "Acaba de sonar una canción que me hizo imaginarte a mi lado.",
+            "Te mando un abrazo virtual aplastante de esos que cortan la respiración.",
+            "Qué ganas locas tengo de verte y darte un beso enorme.",
+            "Eres mi distracción favorita de todo el día.",
+            "Me acordé de una broma tuya y me reí solo como un loco.",
+            "No hay momento del día en que no desearía tenerte aquí conmigo.",
+            "Solo quería asegurarme de que sabes que te pienso constantemente.",
+            "Te envío un mensajito para que sepas que ocupas mi mente entera.",
+            "Ojalá el tiempo vuele y ya estemos juntos de nuevo.",
+            "Un saludito rápido para la dueña de todos mis suspiros.",
+            "No sabes las ganas que tengo de tomarte de la mano ahora mismo.",
+            "Pensar en ti es mi forma favorita de escapar de la rutina.",
+            "Si el pensamiento engordara, yo estaría inmenso de tanto pensarte.",
+            "Eres la reina sin corona de todo mi ser.",
+            "Tus abrazos son el remedio para cualquier mal día.",
+            "Nunca me cansaré de admirar lo perfecta que eres para mí.",
+            "A tu lado, hasta el lunes parece viernes.",
+            "Eres la persona que le da color a mis zonas grises.",
+            "Contigo aprendí que el amor también es paz y tranquilidad.",
+            "Me tienes flotando en las nubes de lunes a domingo.",
+            "Eres la única persona capaz de leerme con solo mirarme.",
+            "Cada detalle tuyo es un poema sin escribir.",
+            "Tu voz es el eco que quiero que rebote en mis paredes siempre.",
+            "Eres la casualidad más planificada por el universo.",
+            "A tu lado el miedo se va y solo queda la valentía de amarte.",
+            "Eres el latido más fuerte de mi corazón agradecido.",
+            "Tienes el manual exacto para hacerme feliz en un segundo.",
+            "Contigo todo es un \"sí\", no hay lugar para las dudas.",
+            "Eres la mejor parte de todos mis días, sin excepción.",
+            "Si el amor es un arte, tú eres la obra maestra.",
+            "A tu lado descubrí que los finales felices sí existen.",
+            "Eres mi estrella polar, la que siempre me guía al norte.",
+            "Tienes el poder de convertir mis problemas en polvo.",
+            "Tus ojos son el espejo en el que siempre me quiero mirar.",
+            "Eres el perfume de mi vida, dulce y embriagador.",
+            "Cada beso tuyo es un sello de garantía de nuestra felicidad.",
+            "Contigo sobran las palabras y los silencios abrazan.",
+            "Eres el poema que Pablo Neruda se olvidó de escribir.",
+            "A tu lado me siento como un rey, porque tú eres la reina absoluta.",
+            "Eres la definición exacta de la palabra \"amor\".",
+            "Tienes una luz que ni mil soles juntos podrían igualar.",
+            "Contigo el amor no se exige, simplemente nace y crece.",
+            "Eres el refugio donde mi alma descansa en paz.",
+            "Tus palabras curan heridas que ni yo sabía que tenía.",
+            "A tu lado, el invierno es cálido y el verano es fresco.",
+            "Eres la pieza maestra del rompecabezas de mi vida.",
+            "Tienes un corazón que es puro oro, brillante y valioso.",
+            "Contigo me atrevo a todo, eres mi escudo y mi espada.",
+            "Eres mi sueño más lúcido y mi realidad más soñada.",
+            "Tu risa es el conjuro que ahuyenta todos mis demonios.",
+            "A tu lado siento que el tiempo de verdad se detiene a observarnos.",
+            "Eres el arcoíris después de la tormenta más fuerte.",
+            "Tienes la habilidad de transformar lágrimas en risas sinceras.",
+            "Contigo entendí que el destino es caprichoso pero sabio.",
+            "Eres el puerto seguro de todos mis barcos a la deriva.",
+            "Tus manos entrelazadas con las mías son mi mapa del mundo.",
+            "A tu lado soy vulnerable, pero jamás me sentí tan seguro.",
+            "Eres el oasis perfecto para mi corazón sediento de amor.",
+            "Tienes el toque mágico de sanar tristezas con sonrisas.",
+            "Contigo el universo conspira siempre a mi favor.",
+            "Eres el lienzo blanco donde quiero pintar mil atardeceres.",
+            "Tu amor es el ancla que me mantiene firme en la tierra.",
+            "A tu lado aprendí que dos almas pueden ser una sola llama.",
+            "Eres la respuesta a las oraciones que nunca pronuncié en voz alta.",
+            "Tienes una mirada que desnuda mi alma y la acaricia.",
+            "Contigo descubrí que el hogar no es un lugar, sino una persona.",
+            "Eres mi mayor victoria y mi trofeo más preciado.",
+            "Tus caricias son el viento fresco en un día sofocante.",
+            "A tu lado, los imposibles son solo retos por cumplir.",
+            "Eres el latido que marca el compás de mi vida entera.",
+            "Tienes el don de hacer que los momentos simples sean eternos.",
+            "Contigo no hay miedo al futuro, solo ganas de vivirlo ya.",
+            "Eres la melodía más pura que mi corazón ha sabido cantar.",
+            "Tu presencia es el bálsamo que calma todas mis ansiedades.",
+            "A tu lado la vida no es perfecta, pero es todo lo que quiero.",
+            "Eres el incendio que no quiero que los bomberos apaguen.",
+            "Tienes el abrazo más sanador de toda la galaxia.",
+            "Contigo los minutos son horas, y las horas son segundos.",
+            "Eres el faro que ilumina mi rumbo en alta mar.",
+            "Tus labios son el poema que me quiero saber de memoria.",
+            "A tu lado descubrí que los príncipes sí pueden llorar de felicidad.",
+            "Eres el milagro más hermoso que mis ojos han visto.",
+            "Tienes una esencia que embriaga mi mente de puro amor.",
+            "Contigo cada amanecer es una promesa de felicidad.",
+            "Eres el latido extra que da mi corazón cuando te veo.",
+            "Tu amor es la fuerza gravitacional que me atrae a ti.",
+            "A tu lado soy simplemente yo, sin máscaras ni escudos.",
+            "Eres el rincón de paz en mi mundo acelerado.",
+            "Tienes el poder de hacer florecer el invierno.",
+            "Contigo el amor es una fiesta a la que siempre estoy invitado.",
+            "Eres la llave que abrió la puerta de mi felicidad.",
+            "Tus ojos son dos luceros que guían mis pasos ciegos.",
+            "A tu lado la vida es un viaje en primera clase.",
+            "Eres el resumen de todo lo bueno que hay en este mundo.",
+            "Tienes el beso perfecto, con la presión y el sabor exacto.",
+            "Contigo el amor fluye como el río hacia el océano.",
+            "Eres mi norte, mi sur, mi este y mi oeste.",
+            "Tu risa es la campana que anuncia que todo está bien.",
+            "A tu lado descubrí que los milagros tienen nombre y apellido.",
+            "Eres el sol que calienta mi piel en las mañanas frías.",
+            "Tienes el coraje que me inspira a ser valiente cada día.",
+            "Contigo los silencios no incomodan, sino que enamoran.",
+            "Eres el puente que une mis miedos con mis esperanzas.",
+            "Tus manos son mi refugio cuando todo parece desmoronarse.",
+            "A tu lado la palabra \"nosotros\" tiene un sentido verdadero.",
+            "Eres el perfume que se queda impregnado en mi memoria.",
+            "Tienes el arte de convertir mis fallos en oportunidades.",
+            "Contigo el amor es un salto al vacío sin miedo a caer.",
+            "Eres la constante en mis variables diarias.",
+            "Tu voz es el arrullo que calma a mis demonios internos.",
+            "A tu lado aprendí que amar es dar sin esperar, y recibirlo todo.",
+            "Eres el latido de un corazón que por fin encontró su ritmo.",
+            "Tienes la habilidad de hacer que el tiempo baile a tu favor.",
+            "Contigo cada instante es una fotografía mental que atesoro.",
+            "Eres la brújula que me indica siempre dónde está mi hogar.",
+            "Tus caricias son el lienzo donde pinto mis mejores sueños.",
+            "A tu lado soy el hombre más afortunado de toda la historia.",
+            "Eres la chispa divina que encendió mi alma apagada.",
+            "Tienes el don de hacer magia con una simple mirada.",
+            "Contigo el universo es más pequeño que el espacio de un abrazo.",
+            "Eres el suspiro que se escapa cuando veo tu foto.",
+            "Tu amor es la armadura que me protege del mundo cruel.",
+            "A tu lado la vida es una canción de cuna, dulce y tranquila.",
+            "Eres el destino al que siempre quiero regresar.",
+            "Tienes el fuego de un volcán y la calma de un lago cristalino.",
+            "Contigo cada beso es un pacto de amor eterno renovado.",
+            "Eres la única adicción saludable que conozco en el mundo.",
+            "Tu risa es el himno nacional de mi propio país llamado \"Felicidad\".",
+            "A tu lado el miedo a amar desapareció por completo.",
+            "Eres el diamante más pulido en una mina de carbón.",
+            "Tienes la llave de mis secretos mejor guardados.",
+            "Contigo el amor es una aventura constante y emocionante.",
+            "Eres el latido que da sentido a mis días rutinarios.",
+            "Tus ojos son el océano donde quiero ahogarme de amor.",
+            "A tu lado soy invencible, imparable e infinitamente feliz.",
+            "Eres la flor que nació en el desierto de mi corazón.",
+            "Tienes el poder de hacer que la luna sienta envidia de tu brillo.",
+            "Contigo los días malos son menos malos y los buenos son geniales.",
+            "Eres el ancla de mi barco y la vela que me empuja.",
+            "Tu amor es la tinta con la que escribo mi historia a partir de hoy.",
+            "A tu lado descubrí que el paraíso está en la Tierra.",
+            "Eres el suspiro más profundo que da mi pecho.",
+            "Tienes el abrazo que encaja como pieza de tetris perfecta en mi vida.",
+            "Contigo la monotonía se transforma en diversión garantizada.",
+            "Eres el escudo que para todos los golpes de la vida.",
+            "Tus besos son las comas y puntos de mi poema favorito.",
+            "A tu lado el reloj se vuelve un aliado y no un enemigo.",
+            "Eres la musa que inspira cada uno de mis pasos.",
+            "Tienes un alma tan hermosa que el físico queda en segundo plano.",
+            "Contigo aprendí que el amor a primera vista dura toda la vida.",
+            "Eres el latido de un corazón que te pertenece por completo.",
+            "Tu voz es el despertador más dulce del mundo.",
+            "A tu lado la palabra \"imposible\" desapareció de mi diccionario.",
+            "Eres el amanecer después de una noche oscura y larga.",
+            "Tienes la habilidad de desarmarme con un solo \"te quiero\".",
+            "Contigo cada paso es firme porque camino de tu mano.",
+            "Eres la dueña absoluta de mi presente y de mi futuro.",
+            "Tus caricias son el premio mayor en la lotería de mi vida.",
+            "A tu lado soy la mejor versión que nunca creí que sería.",
+            "Eres el eco constante de mi corazón enamorado.",
+            "Tienes el poder de revivir mis ilusiones marchitas.",
+            "Contigo el amor no es un juego, es la realidad más hermosa.",
+            "Eres el latido constante de mi vida en modo acelerado.",
+            "Tu sonrisa es el argumento que desarma mis tristezas.",
+            "A tu lado el cielo siempre es azul, aunque llueva a cántaros.",
+            "Eres la melodía que calma a la fiera que llevo dentro.",
+            "Tienes el encanto de una reina y la dulzura de una niña.",
+            "Contigo la vida es un constante \"gracias al universo\".",
+            "Eres el suspiro que alivia mi cansancio laboral de todo el día.",
+            "Tus abrazos son el abrigo que necesito en pleno invierno.",
+            "A tu lado soy un hombre nuevo, enamorado y feliz.",
+            "Eres mi casualidad más bonita y mi destino más seguro.",
+            "Tienes la llave de mi corazón, te ruego que no la pierdas."
         ];
 
-        // --- LÓGICA DE PROGRAMACIÓN ---
-        const button = document.getElementById('smile-btn');
-        const display = document.getElementById('message-display');
-        let lastIndex = -1;
+        const mensajesNoche = [
+            /* MENSAJES DE NOCHE */
+            "Descansa, mi vida. Que los ángeles te cuiden mientras yo sueño contigo.",
+            "Cierra esos ojitos hermosos. Mañana nos espera un día increíble.",
+            "Ojalá pudiera meterme en tus sueños para abrazarte también ahí.",
+            "Duerme tranquila, que yo aquí sigo pensando en ti.",
+            "Que la luna te ilumine y mis abrazos te abriguen en la distancia.",
+            "Eres mi último pensamiento de hoy y el primero de mañana.",
+            "Que descanses, mi reina. Gracias por hacer de mi día algo perfecto.",
+            "Ojalá mi almohada fueras tú. Buenas noches, amor.",
+            "Te envío un beso gigante para que te acompañe toda la noche.",
+            "Duerme bien, amor mío. Mañana te amaré aún más que hoy.",
+            "Cierra los ojos y siente mi abrazo virtual. Hasta mañana, preciosa.",
+            "Que tus sueños sean tan dulces y hermosos como tú.",
+            "Si te despiertas a medianoche, recuerda que te amo con locura.",
+            "Buenas noches a la mujer que se robó mi corazón.",
+            "Descansa, que mañana tienes que seguir brillando como siempre.",
+            "Me voy a dormir con una sonrisa porque tú eres el motivo.",
+            "Que el silencio de la noche te traiga mucha paz. Te adoro.",
+            "Mi cama se siente enorme sin ti. Buenas noches, mi vida.",
+            "Soñaré contigo, porque la realidad contigo ya es un sueño.",
+            "Cierra los ojitos, deja el estrés de hoy y respira. Te amo.",
+            "Un beso en la frente, un \"te amo\" suave y que descanses muy bien.",
+            "Gracias por existir. Que pases muy buenas noches, hermosa.",
+            "Duerme, princesa. El mundo está a salvo y mi corazón es tuyo.",
+            "Que las estrellas te cuenten lo mucho que te quiero esta noche.",
+            "No importa qué tan cansado esté, siempre tengo energía para decirte \"buenas noches\".",
+            "Ojalá la noche pase rápido para poder volver a hablarte.",
+            "Que duermas como un angelito. Te mereces el mejor de los descansos.",
+            "Eres mi estrella favorita en medio de la oscuridad. Buenas noches.",
+            "Descansa ese corazón hermoso que tienes. Te quiero.",
+            "Buenas noches a la dueña de mis suspiros nocturnos.",
+            "Te abrazo desde la distancia. Que tengas dulces sueños.",
+            "Mañana será un gran día, pero hoy toca descansar. Te amo mucho.",
+            "Que el universo te cobije y te dé un sueño reparador.",
+            "Eres mi paz antes de dormir. Gracias por darme tanta tranquilidad.",
+            "Me duermo feliz sabiendo que eres parte de mi vida.",
+            "Que tu sueño sea profundo y tus energías se recarguen al cien.",
+            "Hasta mañana, mi amor. Te dejo mi corazón cuidándote esta noche.",
+            "Buenas noches, mi musa. Que la noche te trate con dulzura.",
+            "Cierra tus lindos ojos, el día de hoy ya terminó. Te amo.",
+            "Que descanses, mi bonita. Eres lo mejor que me pasó hoy.",
+            "Me voy a dormir con ganas de abrazarte fuerte.",
+            "Que la noche se lleve cualquier preocupación y te deje solo paz.",
+            "Buenas noches a la chica más espectacular del mundo.",
+            "Te mando un millón de besos para que los repartas en tus sueños.",
+            "Descansa, mi cielo. Mañana te prometo robarte más sonrisas.",
+            "Eres la luz que apaga mi oscuridad. Buenas noches, amor.",
+            "Que duermas sintiendo lo inmensamente amada que eres.",
+            "Cierra los ojos, cuenta ovejitas o cuéntame a mí queriéndote infinito.",
+            "Buenas noches, mi tesoro. Eres mi mayor bendición.",
+            "Hasta mañana, princesa. Mi corazón se queda contigo esta noche."
+        ];
 
-        button.addEventListener('click', () => {
-            display.classList.remove('fade-in');
-            display.classList.add('fade-out');
+        const mensajesAniversario = [
+            /* MENSAJES DE ANIVERSARIO */
+            "Feliz día, mi amor. Hoy celebramos que nuestros caminos se cruzaron.",
+            "Cada mes, cada día a tu lado es una pequeña victoria de la vida.",
+            "Qué afortunado soy de poder marcar esta fecha en mi calendario con un corazón.",
+            "Feliz día de nosotros, mi vida. El inicio de nuestra mejor aventura.",
+            "Que esta fecha sea solo un pequeño número comparado con todo lo que viviremos.",
+            "Hoy brindo por ti, por mí, y por este \"nosotros\" que me encanta.",
+            "No importa cuánto tiempo pase, siempre celebraré esta fecha como el mejor día de mi vida.",
+            "Feliz día a la mujer que le dio un giro completo a mi universo.",
+            "Hoy celebramos el día en que la casualidad se volvió destino.",
+            "Que cada vez que llegue este día, estemos más enamorados que el anterior.",
+            "Hoy es nuestro día especial, el pretexto perfecto para llenarte de besos.",
+            "Feliz día, mi amor. Gracias por haberme dicho que sí a esta locura hermosa.",
+            "Hoy recuerdo ese primer instante juntos y sonrío igual que esa vez.",
+            "Brindo por nuestra fecha, por nuestros abrazos y por nuestro futuro.",
+            "Feliz día a mi persona favorita. Hoy la celebración es nuestro amor.",
+            "Un día como hoy mi vida cambió para mejor, porque entraste tú en ella.",
+            "Que esta fecha especial sea eterna en nuestros corazones.",
+            "Feliz día, princesa. Mi mejor regalo eres tú a mi lado.",
+            "Hoy mi calendario brilla porque marca el día de nuestro amor.",
+            "Celebrar contigo esta fecha es mi actividad favorita.",
+            "Feliz día, mi niña bonita. Gracias por este tiempo lleno de magia.",
+            "Hoy es un buen día para recordarte que te volvería a elegir mil veces más.",
+            "Brindemos por el día en que decidimos caminar de la mano.",
+            "Feliz día, amor de mi vida. Que este amor siga creciendo sin parar.",
+            "Hoy el mundo celebra sin saberlo, porque es nuestro día especial.",
+            "Un día como hoy empezó la historia más linda que he vivido.",
+            "Feliz día, mi reina. Eres la mejor decisión que he tomado jamás.",
+            "Hoy celebro que te tengo, que me tienes y que nos amamos.",
+            "Que esta fecha sea siempre el recordatorio de nuestro pacto de amor.",
+            "Feliz día, preciosa. Eres el premio mayor de mi vida entera.",
+            "Hoy mi corazón late más fuerte al recordar cómo empezó todo.",
+            "Celebrar esta fecha contigo es un sueño hecho realidad.",
+            "Feliz día, mi vida. A tu lado, el tiempo es simplemente perfecto.",
+            "Hoy es nuestro día especial: día de amarnos más y quejarnos menos.",
+            "Que cada aniversario de nuestro amor sea una lluvia de besos.",
+            "Feliz día, amor mío. Gracias por ser el mejor capítulo de mi historia.",
+            "Hoy levantamos la copa por nosotros, los más enamorados del mundo.",
+            "Celebrar esta fecha es celebrar la vida, porque tú eres mi vida.",
+            "Feliz día, pequeña. Que la magia de este día nos acompañe siempre.",
+            "Hoy mi memoria viaja al momento en que me enamoré de ti.",
+            "Brindo por el destino que nos unió en esta fecha tan especial.",
+            "Feliz día, mi luz. Que nuestro amor sea siempre así de fuerte y sincero.",
+            "Hoy es un día para llenarte de mimos y recordarte por qué te amo.",
+            "Celebrar nuestro día especial es mi excusa para abrazarte el doble.",
+            "Feliz día, mi amor. Que sigamos coleccionando fechas juntos.",
+            "Hoy celebro la dicha de tenerte y la suerte de amarte.",
+            "Que este día especial nos recuerde por qué estamos juntos peleando contra el mundo.",
+            "Feliz día a la dueña absoluta de mi corazón desde aquel día.",
+            "Hoy mi calendario tiene una sonrisa pintada por ser nuestra fecha.",
+            "Brindemos por nuestro amor, que nació un día como hoy para no morir jamás.",
+            "Feliz día, mi cielo. El primero de muchísimos más a tu lado.",
+            "Hoy celebramos que somos un equipo perfecto e indestructible.",
+            "Que esta fecha sea el sello de garantía de nuestro amor infinito.",
+            "Feliz día, mi niña hermosa. Gracias por regalarme tu tiempo y tu corazón.",
+            "Hoy es el aniversario de mis ganas locas de hacerte inmensamente feliz.",
+            "Celebrar nuestro día es recordar el momento exacto en que fui flechado.",
+            "Feliz día, mi vida. Eres la fecha más importante grabada en mi memoria.",
+            "Hoy el cielo está de fiesta porque celebramos nuestro amor verdadero.",
+            "Brindo por cada lágrima evitada y cada sonrisa provocada desde esta fecha.",
+            "Feliz día, princesa de mi cuento de hadas real.",
+            "Hoy es un día de amor, de pasión y de agradecimiento total por tenerte.",
+            "Celebrar esta fecha a tu lado es el mejor lujo que me puedo dar.",
+            "Feliz día, mi todo. Que nuestro amor siga siendo el centro de nuestro universo.",
+            "Hoy mi corazón baila de felicidad recordando nuestro comienzo.",
+            "Que esta fecha sea siempre sinónimo de abrazos largos y besos dulces.",
+            "Feliz día, amor. Hoy renuevo mis votos de cuidarte y respetarte siempre.",
+            "Hoy es nuestro día, mi amor, apaga el celular y ven a mis brazos.",
+            "Brindemos por la chispa que se encendió un día como hoy y que es un incendio ahora.",
+            "Feliz día, mi chiquita. Eres mi triunfo más grande en el amor.",
+            "Hoy celebro que decidimos caminar juntos en esta locura de vida.",
+            "Que cada fecha especial fortalezca más estos lazos que nos unen.",
+            "Feliz día, mi sol. Eres el amanecer constante de mi vida entera.",
+            "Hoy celebramos nosotros, porque el mundo puede esperar un ratito.",
+            "Celebrar nuestro día especial me hace el hombre más feliz de la tierra.",
+            "Feliz día, amorcito. Que la pasión de hoy nos dure la eternidad.",
+            "Hoy es el día perfecto para decirte que te amo más que al principio.",
+            "Brindo por nuestro pacto, por nuestros sueños y por nuestro día especial.",
+            "Feliz día, preciosa. Cada día a tu lado es una página de un libro mágico.",
+            "Hoy mi alma festeja que te encontró en el momento exacto.",
+            "Que esta fecha sea un tatuaje de felicidad en nuestro corazón.",
+            "Feliz día, mi vida. No hay lugar en el mundo donde prefiera celebrar que aquí contigo.",
+            "Hoy celebramos que el destino hizo su mejor trabajo al juntarnos.",
+            "Celebrar contigo nuestra fecha es confirmar que tomé la mejor decisión.",
+            "Feliz día, amor mío. Eres mi festejo diario, pero hoy es oficial.",
+            "Hoy brindo por tu paciencia, tu amor y por estar siempre ahí para mí.",
+            "Que esta fecha especial marque un hito en nuestro largo camino juntos.",
+            "Feliz día a la mujer que me enseñó lo que es el amor de verdad.",
+            "Hoy es el día en que mi corazón se mudó definitivamente al tuyo.",
+            "Brindemos por la suerte de habernos encontrado en esta vida loca.",
+            "Feliz día, mi reina. Eres la corona de mi felicidad absoluta.",
+            "Hoy mi corazón late al ritmo de nuestra canción de aniversario.",
+            "Celebrar este día contigo me llena de esperanza para todo el futuro.",
+            "Feliz día, mi amor. Que nunca nos falten fechas para celebrar.",
+            "Hoy aplaudo nuestro amor y la resistencia que tenemos ante la adversidad.",
+            "Que esta fecha especial sea el trampolín para saltar a un futuro brillante.",
+            "Feliz día, mi vida. Gracias por hacer que este día sea mi favorito del año.",
+            "Hoy es el cumpleaños de nuestro amor, y tú eres el mejor regalo.",
+            "Brindo por nosotros, por nuestra fecha y por nuestro inmenso amor.",
+            "Feliz día, preciosa. Que el universo siga conspirando a nuestro favor siempre.",
+            "Hoy celebro que te amo, que me amas y que somos felizmente nosotros."
+        ];
 
+        const mensajesNavidad = [
+            /* MENSAJES NAVIDEÑOS */
+            "Feliz Navidad, mi amor. Mi mejor regalo ya lo tengo y eres tú.",
+            "Que esta Navidad la pasemos abrazados y llenos de magia. Te amo.",
+            "Mi único deseo a Papá Noel fue que nunca me faltes en la vida.",
+            "Feliz Nochebuena, princesa. Eres la estrella más brillante de mi arbolito.",
+            "Que esta Navidad esté llena de luces, pero ninguna brillará más que tú.",
+            "En esta Navidad brindo por ti, por nosotros y por todo el amor que nos tenemos.",
+            "Feliz Navidad, mi vida. Eres la magia que le faltaba a mis diciembres.",
+            "No necesito regalos debajo del árbol porque te tengo a ti a mi lado.",
+            "Que esta época navideña te traiga paz, amor y muchísimos besos míos.",
+            "Feliz Navidad a la reina de mi corazón. Eres mi milagro navideño.",
+            "Ojalá estuvieras envuelta con un moño rojo debajo de mi árbol. Te amo.",
+            "Que el espíritu navideño llene nuestro hogar de felicidad y risas eternas.",
+            "Feliz Navidad, mi amor. Brindo por nuestra primera (o enésima) Navidad juntos.",
+            "Eres el turrón más dulce de mis navidades. Te amo con locura.",
+            "En esta Navidad, te prometo amor infinito como mi único regalo inquebrantable.",
+            "Feliz Nochebuena, mi cielo. Que la paz de esta noche te abrigue el alma.",
+            "Que Santa me traiga mucha paciencia para aguantar las ganas de besarte a cada rato.",
+            "Eres el mejor adorno de mi vida entera. ¡Feliz Navidad, hermosa!",
+            "Esta Navidad mi corazón late a ritmo de villancico porque estoy enamorado.",
+            "Feliz Navidad, mi niña. Que pases una noche hermosa rodeada de amor.",
+            "Mi regalo favorito no se compra, se abraza, se besa y se llama como tú.",
+            "Que esta Navidad nuestro amor se multiplique por mil. Te amo infinitamente.",
+            "Feliz Navidad a la chica que hace que todos los días se sientan como fiesta.",
+            "En esta época de paz, mi mayor paz es saber que estás en mi vida.",
+            "Eres la nieve que refresca mi vida y el fuego de la chimenea que me calienta.",
+            "Feliz Navidad, preciosa. Que esta noche sea mágica y perfecta para ti.",
+            "No hay luces en el mundo que superen el brillo de tus ojitos en Navidad.",
+            "Que la magia de la Navidad te conceda todos los deseos de tu hermoso corazón.",
+            "Feliz Navidad, mi vida. Estoy contando los minutos para darte el abrazo de Nochebuena.",
+            "Eres el regalo que le pedí a la vida desde hace mucho tiempo.",
+            "En esta Navidad, quiero envolverte entre mis brazos y no soltarte nunca.",
+            "Feliz Navidad, amor. Que el nacimiento de Jesús renueve también nuestro amor puro.",
+            "Brindemos esta Nochebuena por la familia, el amor y por nuestra historia juntos.",
+            "Que la estrella de Belén ilumine todos tus proyectos y metas, mi amor.",
+            "Feliz Navidad a la mujer más hermosa que pisa la nieve de este mundo.",
+            "Mi brindis de medianoche será por nosotros y por todo lo que construiremos.",
+            "Eres el \"Ho ho ho\" que me saca una sonrisa todos los días. Te amo.",
+            "Feliz Navidad, mi reina. Que tu noche esté llena de magia familiar y paz.",
+            "Esta Navidad es perfecta simplemente porque estás en mi corazón.",
+            "Que Papá Noel te traiga todo lo que pidas, y si le falta algo, yo te lo doy.",
+            "Feliz Navidad, mi sol. Eres el calor de mi invierno y mi alegría en diciembre.",
+            "En esta Nochebuena, te envío un beso con sabor a chocolate caliente.",
+            "Que nuestro amor sea el árbol fuerte donde colgamos todos nuestros sueños navideños.",
+            "Feliz Navidad, mi amorcito. Eres la luz de mis luces parpadeantes.",
+            "Brindo porque esta sea una de muchísimas navidades juntos.",
+            "Eres la canción navideña que no puedo dejar de tararear de felicidad.",
+            "Feliz Navidad a mi cómplice de travesuras y mi amor más sincero.",
+            "Que la magia de esta fecha nos envuelva en un abrazo eterno. Te amo.",
+            "Mi mejor cena de Nochebuena es perderme en la dulzura de tus labios.",
+            "Feliz Navidad, mi vida. Que la esperanza y el amor reinen en tu casa hoy.",
+            "Eres el milagro de Navidad que cambió mi vida para siempre.",
+            "En esta Navidad, prometo amarte como un niño ama a sus regalos nuevos.",
+            "Que la luz del árbol se refleje en tus ojos y me enamore aún más de ti.",
+            "Feliz Navidad, princesa. Te extraño aunque te haya visto hace un ratito.",
+            "Brindemos por el amor verdadero que celebramos en esta Nochebuena mágica.",
+            "Eres la bufanda que abriga mi corazón en los días más fríos.",
+            "Feliz Navidad a la dueña de todos mis deseos en la carta a Santa.",
+            "Que el espíritu navideño te llene de bendiciones y te quite cualquier estrés.",
+            "Esta Navidad mi mayor alegría es poder decir que eres mi novia.",
+            "Feliz Navidad, mi cielo. Que la paz inunde tu hogar y tu corazón hermoso.",
+            "Eres el cascabel de mi trineo, la alegría que anuncia mi llegada.",
+            "En esta Nochebuena mi único deseo es hacerte inmensamente feliz siempre.",
+            "Que nuestro amor brille más que cualquier adorno de la ciudad.",
+            "Feliz Navidad, amor. Gracias por iluminar mi vida con tu presencia.",
+            "Brindo por la chica de mis sueños con la que paso esta linda Navidad.",
+            "Eres el panetón de mi vida, dulce y con las mejores sorpresas adentro.",
+            "Feliz Navidad, mi niña bonita. Que rías mucho y comas delicioso hoy.",
+            "Que la alegría de esta noche te acompañe durante todos los días del año.",
+            "En esta Navidad, quiero ser el hombro donde reposes de tanto festejo.",
+            "Feliz Navidad a la estrella fugaz que se quedó a vivir conmigo.",
+            "Eres el chocolate caliente que descongela mi corazón cansado.",
+            "Brindo por tu sonrisa, por tus ojos y por tu amor en esta Nochebuena.",
+            "Que la magia navideña nos conceda el deseo de estar juntos para siempre.",
+            "Feliz Navidad, mi amor. Eres el centro de mesa perfecto para mi vida.",
+            "Hoy agradezco a Dios y al universo por el regalo inmenso de tu amor.",
+            "Eres la galleta de jengibre más rica y dulce del planeta entero.",
+            "Feliz Navidad, mi luz. Que la prosperidad y el amor reinen en ti.",
+            "Que en esta Navidad se esfume el cansancio y solo quede la felicidad plena.",
+            "Mi Nochebuena es perfecta si tú me mandas un mensaje y me dices \"te amo\".",
+            "Feliz Navidad a la mujer de la que estoy perdidamente enamorado.",
+            "Eres el muñeco de nieve que no quiero que se derrita jamás en mi vida.",
+            "En esta Navidad, te prometo lealtad, amor y muchos abrazos calientitos.",
+            "Que el amor nazca esta noche en nuestros corazones con más fuerza.",
+            "Feliz Navidad, mi vida. Que disfrutes con los tuyos y me pienses un poquito.",
+            "Brindemos porque cada Navidad que venga nos encuentre más unidos que antes.",
+            "Eres la cinta de regalo que adorna y perfecciona mi existencia entera.",
+            "Feliz Navidad, princesa hermosa. Eres mi felicidad hecha persona.",
+            "Que Papá Noel sepa que te portaste excelente siendo la mejor novia del mundo.",
+            "En esta Nochebuena te mando un abrazo rompehuesos lleno de amor.",
+            "Feliz Navidad a mi compañera de vida. Te amo más de lo que te imaginas.",
+            "Eres el campaneo dulce que alegra mi corazón en diciembre.",
+            "Que la estrella navideña guíe nuestros pasos hacia un futuro juntos y brillante.",
+            "Feliz Navidad, mi cielo. Eres mi celebración favorita de todo el calendario.",
+            "Hoy brindo por el milagro de haberte conocido en este inmenso mundo.",
+            "Que la magia de esta noche borre cualquier pena que tengas en tu alma.",
+            "Feliz Navidad, amor de mi vida. Eres el abrazo que me da paz en el caos.",
+            "Eres la villancico que mi corazón canta de pura felicidad hoy.",
+            "En esta Nochebuena te ofrezco mi amor como el regalo más sincero.",
+            "Que el pesebre en nuestro corazón nos mantenga unidos en fe y en amor.",
+            "Feliz Navidad, mi tesoro. Te amo hoy, en Nochebuena y para siempre."
+        ];
+
+        const mensajesAñoNuevo = [
+            /* MENSAJES DE AÑO NUEVO */
+            "Feliz Año Nuevo, mi amor. Que este año sea nuestro mejor año hasta ahora.",
+            "Mi propósito de este nuevo año es hacerte más feliz de lo que fuiste en el anterior.",
+            "Brindo por los 365 días de amor, aventuras y locuras que nos esperan.",
+            "Feliz Año, princesa. Eres la mejor forma de empezar y terminar un calendario.",
+            "Que este año que entra esté lleno de metas cumplidas y besos robados.",
+            "Despido el año viejo agradeciendo al universo por haberte puesto en mi vida.",
+            "Feliz Año Nuevo a la dueña absoluta de mis propósitos y de mis ganas.",
+            "Mi primera uva fue por ti, para que estemos juntos todo este nuevo año.",
+            "Que cada mes de este nuevo año fortalezca nuestro amor y nuestra complicidad.",
+            "Feliz Año, mi vida. Contigo cualquier inicio de año es completamente mágico.",
+            "Brindo porque este nuevo año nos encuentre de la mano y más fuertes.",
+            "No importa qué año sea, mi resolución siempre será amarte sin condiciones.",
+            "Feliz Año Nuevo, mi reina. Eres la mejor noticia del año que se va.",
+            "Que las doce campanadas sean el inicio de doce meses de pura felicidad juntos.",
+            "Mi deseo para este año es que no te falte salud, éxito ni mis abrazos.",
+            "Feliz Año, mi cielo. Vamos por 365 nuevas oportunidades para amarnos locamente.",
+            "Deseo que este nuevo año te traiga el doble de alegrías de las que me das a mí.",
+            "Brindo por un año lleno de viajes, comidas ricas y muchísimas risas a tu lado.",
+            "Feliz Año Nuevo a la mujer que hace que mi vida valga la pena cada segundo.",
+            "Que este año nuevo sea un lienzo en blanco para pintar nuestra historia de colores.",
+            "Mi mayor logro del año pasado fue conquistar tu hermoso corazón. Te amo.",
+            "Feliz Año, amor mío. Que este año rompamos todas nuestras barreras y miedos.",
+            "Que el año nuevo nos regale tiempo para disfrutarnos al máximo y sin estrés.",
+            "Brindemos por el pasado que nos unió, y por el futuro hermoso que construiremos.",
+            "Feliz Año Nuevo, preciosa. Eres el brillo de mis fuegos artificiales de medianoche.",
+            "Prometo que este nuevo año te amaré 365 veces más fuerte que el anterior.",
+            "Que cada día de este año nuevo te levantes sabiendo lo inmensamente valiosa que eres.",
+            "Feliz Año, mi vida. Contigo a mi lado, estoy listo para conquistar el mundo entero.",
+            "Mi brindis de fin de año es por ti, por tu sonrisa y por nuestra infinita paz.",
+            "Que este nuevo año venga cargado de sorpresas lindas y de mucho amor nuestro.",
+            "Feliz Año Nuevo a la persona que le dio sentido a todos mis días del año viejo.",
+            "Empezar el año contigo es la mejor señal de que todo va a salir perfecto.",
+            "Brindo por tu éxito, por tus sueños y por ser el apoyo incondicional del otro.",
+            "Feliz Año, mi niña bonita. Que la vida te sonría tanto como tú me sonríes a mí.",
+            "Mi resolución principal de este año es robarte un millón de besos.",
+            "Que el nuevo año borre los miedos y nos llene de valentía para amarnos libremente.",
+            "Feliz Año Nuevo, mi luz. Eres la chispa que enciende todos mis motores.",
+            "Brindemos por los proyectos juntos, las cenas, las pelis y todo lo bueno que viene.",
+            "Este nuevo año tiene cara de ser espectacular porque estás tú en él.",
+            "Feliz Año, mi reina. Que cada campanada sea una bendición para ti y los tuyos.",
+            "Mi abrazo de medianoche lleva impregnado todo el amor que te tengo guardado.",
+            "Que este nuevo ciclo nos permita seguir creciendo como pareja y como mejores amigos.",
+            "Feliz Año Nuevo a mi cómplice favorita de locuras y desvelos. Te adoro inmensamente.",
+            "Prometo que en este nuevo año te voy a cuidar como el tesoro más fino del mundo.",
+            "Brindo por el año que se va, porque me dejó la enseñanza de que eres mi todo.",
+            "Feliz Año, mi sol. Que ilumines cada uno de los 365 días que tenemos por delante.",
+            "Mi deseo de medianoche es que nunca dejes de ser esa mujer fuerte y soñadora que amo.",
+            "Que este año nuevo te sobre salud, dinero, pero sobre todo, que te sobre mi amor.",
+            "Feliz Año Nuevo, princesa. Contigo cada año se vuelve mi año favorito.",
+            "Brindemos por los meses que vienen, llenos de pasión, confianza y mucha risa.",
+            "Este año nuevo declaro que seré el hombre más feliz del mundo a tu lado.",
+            "Feliz Año, mi amor. Que tus metas laborales y personales se cumplan al 100%.",
+            "Mi primer mensaje del año es para la mujer que ocupa el primer lugar en mi corazón.",
+            "Que este nuevo año sea un viaje espectacular donde tú y yo seamos los capitanes.",
+            "Feliz Año Nuevo, mi vida. Eres la razón por la que mi copa está siempre medio llena.",
+            "Brindo por nuestra historia, que en este nuevo año escribirá sus mejores capítulos.",
+            "Este año te amaré en primavera, verano, otoño y en el frío de invierno por igual.",
+            "Feliz Año, mi cielo. Que la felicidad de hoy sea el prólogo de todo el año nuevo.",
+            "Mi brindis de Año Nuevo es por tu paciencia infinita y tu corazón de oro puro.",
+            "Que cada día de este año nuevo te sorprendas de lo mucho que puedes lograr, guerrera.",
+            "Feliz Año Nuevo a la chica de la que estoy loco. Este año te vuelvo más loca de amor.",
+            "Prometo hacer que este año nuevo sea inolvidable y mágico para ti. Te lo juro.",
+            "Brindemos por el reloj que marca las doce y nos regala un año más de oportunidades.",
+            "Feliz Año, mi amorcito. Eres el confeti que alegra la fiesta de mi vida entera.",
+            "Mi deseo para este año es verte cumplir tus sueños y aplaudirte de pie en primera fila.",
+            "Que el año nuevo nos traiga más paciencia, menos discusiones y besos infinitos.",
+            "Feliz Año Nuevo, mi tesoro. Eres lo mejor que voy a llevarme de este año viejo.",
+            "Brindo por la magia de los nuevos comienzos, de la mano del amor de mi vida.",
+            "Este año nuevo vengo recargado de amor, mimos y ganas de hacerte la más feliz.",
+            "Feliz Año, preciosa. Que tus días sean brillantes y tus noches sean de paz absoluta.",
+            "Mi abrazo de fin de año es el ancla que nos mantendrá unidos todos estos meses.",
+            "Que este nuevo ciclo destierre el estrés y solo traiga abundancia a nuestra relación.",
+            "Feliz Año Nuevo a la mujer más valiente y luchadora. Que este año la rompas en todo.",
+            "Prometo ser tu fan número uno en todas tus metas de este nuevo año. ¡Tú puedes!",
+            "Brindemos por los besos que nos dimos y por el millón de besos que nos faltan.",
+            "Feliz Año, mi amor. Que la prosperidad y el éxito sean tus mejores aliados este año.",
+            "Mi deseo de año nuevo fue simple: Tú. Hoy, mañana, este año y todos los que sigan.",
+            "Que este año nuevo nos sorprenda con alegrías que ni siquiera habíamos imaginado.",
+            "Feliz Año Nuevo, mi vida entera. Empiezo este año con el pie derecho porque te tengo.",
+            "Brindo por la salud mental, el amor propio y nuestro amor en pareja para este año.",
+            "Este nuevo año declaro que nuestro amor será la envidia de todos los románticos.",
+            "Feliz Año, mi niña hermosa. Que nunca te falte la sonrisa en la cara los 365 días.",
+            "Mi propósito de este nuevo año es verte crecer profesionalmente y aplaudir tus logros.",
+            "Que este año nuevo venga con menos estrés y muchísimas más tardes de películas juntos.",
+            "Feliz Año Nuevo a la estrella que guía mi camino, incluso en las madrugadas oscuras.",
+            "Brindemos por el amor sano, leal y apasionado que cultivaremos durante todo este año.",
+            "Prometo que este año te amaré en tus días brillantes y te amaré el doble en los nublados.",
+            "Feliz Año, mi cielo. Eres mi brújula para no perderme en los 12 meses que vienen.",
+            "Mi deseo sincero es que este año lloremos, pero solo de tanto reírnos juntos a carcajadas.",
+            "Que el nuevo año sea el trampolín para que alcances todas esas locuras hermosas que sueñas.",
+            "Feliz Año Nuevo, mi amor. Hoy celebro la vida, el tiempo y la bendición de tenerte a ti.",
+            "Brindo por ti, por tu belleza, por tu inteligencia y por este año que será completamente tuyo.",
+            "Este nuevo año, me comprometo a ser el abrazo seguro al que quieras volver siempre cada noche.",
+            "Feliz Año, princesa mía. Que la magia de las doce nos acompañe hasta el próximo diciembre.",
+            "Mi resolución más firme de este año nuevo es no soltarte nunca de la mano.",
+            "Que este año nuevo te encuentres rodeada de éxito, buenas energías y todo mi apoyo incondicional.",
+            "Feliz Año Nuevo a la mujer de mis sueños, que convirtió mi realidad en algo mucho mejor.",
+            "Brindemos por nuestro equipo invencible. Este año nuevo, tú y yo contra el mundo entero, mi vida.",
+            "Este año quiero llenarte de momentos que cuando los recuerdes de viejita, te hagan sonreír muchísimo.",
+            "Feliz Año Nuevo, amor de mi vida. Te amo infinitamente. ¡A conquistar juntos todo lo que viene!"
+        ];
+
+        // ==========================================
+        // 4. LÓGICA DE TIEMPO Y TEMAS
+        // ==========================================
+        
+        // Si por alguna razón los arrays están vacíos, mostrará este mensaje por defecto
+        let activeArray = ["Falta agregar los mensajes en el código ❤️"]; 
+        let currentIcon = "❤️"; 
+
+        function inicializarAplicacion() {
+            const now = new Date();
+            const month = now.getMonth(); 
+            const day = now.getDate();
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            const timeStr = hour + (minute / 60); 
+
+            const body = document.body;
+            const titulo = document.getElementById("titulo");
+            
+            body.className = "";
+
+            // REGLA 1: FECHAS ESPECIALES
+            if (month === 11 && (day === 24 || day === 25)) {
+                body.classList.add("theme-christmas");
+                if(mensajesNavidad.length > 0) activeArray = mensajesNavidad;
+                currentIcon = "❄️"; 
+                titulo.innerText = "¡Feliz Navidad, \nMi Amor!";
+            } 
+            else if ((month === 11 && day === 31) || (month === 0 && day === 1)) {
+                body.classList.add("theme-newyear");
+                if(mensajesAñoNuevo.length > 0) activeArray = mensajesAñoNuevo;
+                currentIcon = "✨";
+                titulo.innerText = "¡Feliz Año Nuevo!";
+            }
+            else if (day === 25) {
+                body.classList.add("theme-anniversary");
+                if(mensajesAniversario.length > 0) activeArray = mensajesAniversario;
+                currentIcon = "🍷"; 
+                titulo.innerText = "¡Feliz Aniversario, \nMi Vida!";
+            }
+            // REGLA 2: EL DÍA A DÍA
+            else {
+                titulo.innerText = "Para mi niña hermosa";
+                currentIcon = "❤️";
+                
+                if (timeStr >= 6 && timeStr < 17.5) {
+                    body.classList.add("theme-day");
+                    if(mensajesGenerales.length > 0) activeArray = mensajesGenerales;
+                } 
+                else if (timeStr >= 17.5 && timeStr < 19.5) {
+                    body.classList.add("theme-sunset");
+                    if(mensajesGenerales.length > 0) activeArray = mensajesGenerales;
+                } 
+                else {
+                    body.classList.add("theme-night");
+                    if(mensajesNoche.length > 0) activeArray = mensajesNoche;
+                    currentIcon = "⭐"; 
+                }
+            }
+        }
+
+        function generarMensaje() {
+            if (activeArray.length === 0) return;
+            const randomIndex = Math.floor(Math.random() * activeArray.length);
+            const mensajeDiv = document.getElementById("mensaje");
+            
+            mensajeDiv.style.opacity = 0;
             setTimeout(() => {
-                let randomIndex;
-                
-                do {
-                    randomIndex = Math.floor(Math.random() * phrases.length);
-                } while (randomIndex === lastIndex);
-                
-                lastIndex = randomIndex;
-                
-                display.innerText = phrases[randomIndex];
+                mensajeDiv.innerText = activeArray[randomIndex];
+                mensajeDiv.style.opacity = 1;
+            }, 300);
+        }
 
-                display.classList.remove('fade-out');
-                display.classList.add('fade-in');
-            }, 400); 
-        });
+        function crearParticula() {
+            const container = document.getElementById("floating-container");
+            const part = document.createElement("div");
+            part.classList.add("floating-item");
+            part.innerText = currentIcon;
+            
+            part.style.left = Math.random() * 100 + "vw";
+            part.style.fontSize = (Math.random() * 20 + 15) + "px";
+            part.style.animationDuration = (Math.random() * 5 + 5) + "s";
+            
+            container.appendChild(part);
+            
+            setTimeout(() => {
+                part.remove();
+            }, 10000); // Se borran a los 10 segundos
+        }
+
+        // ==========================================
+        // 5. ARRANQUE DEL SISTEMA
+        // ==========================================
+        
+        setInterval(crearParticula, 1200); // 1 partícula nueva cada 1.2 segundos
+        inicializarAplicacion();
+
     </script>
 </body>
 </html>
